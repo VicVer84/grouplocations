@@ -1,0 +1,2401 @@
+llocation = /city/seasons/ {
+	Added: proxy_redirect off;
+}
+location / {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location /api/directories/v2 {
+	Added: server_tokens off;
+}
+location /api/segments/v4/frontend/json/ru/segments/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location /httpbin {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: server_tokens off;
+}
+location /local/modules/ {
+	Added: server_tokens off;
+}
+location /mos.ru.avtokod.webapi/ {
+	Added: server_tokens off;
+}
+location /mos.ru.fines.webapi/ {
+	Added: server_tokens off;
+}
+location /mos.ru.record.webapi/ {
+	Added: server_tokens off;
+}
+location /opensearch-en.xml {
+	Added: server_tokens off;
+}
+location /opensearch.xml {
+	Added: server_tokens off;
+}
+location /parma.siv.Record.web.api/ {
+	Added: server_tokens off;
+}
+location /parma.siv.fines.web.api/ {
+	Added: server_tokens off;
+}
+location /pgu {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location /ptaf-slow-and-bad-responses-test {
+	Added: server_tokens off;
+}
+location /services/segments/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location /services/segments/v1/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location /stat-turbo.xml {
+	Added: server_tokens off;
+}
+location /stproxy/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location /vagrant/ {
+	Added: server_tokens off;
+}
+location /vendor/ {
+	Added: server_tokens off;
+}
+location /vts-status {
+	Added: server_tokens off;
+}
+location = / {
+	Added: proxy_redirect off;
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location = /.well-known/assetlinks.json {
+	Added: server_tokens off;
+}
+location = /.well-known/pgp-key.txt {
+	Added: server_tokens off;
+}
+location = /.well-known/pki-validation/E6134F2D7D20E008AFB2F91BB3E384D7.txt {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /.well-known/security.txt {
+	Added: server_tokens off;
+}
+location = /12june {
+	Added: server_tokens off;
+}
+location = /12june/ {
+	Added: server_tokens off;
+}
+location = /9may/ {
+	Added: server_tokens off;
+}
+location = /BingSiteAuth.xml {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /afisha/tickets/oferta {
+	Added: server_tokens off;
+}
+location = /api/feed/negotiate {
+	Added: server_tokens off;
+}
+location = /api/main-page/v2/ru/our-city {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /app {
+	Added: server_tokens off;
+}
+location = /apple-app-site-association {
+	Added: server_tokens off;
+}
+location = /arenda-sport/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /authority/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /authority/discussion {
+	Added: server_tokens off;
+}
+location = /authority/documents {
+	Added: server_tokens off;
+}
+location = /authority/messages {
+	Added: server_tokens off;
+}
+location = /authority/projects {
+	Added: server_tokens off;
+}
+location = /blockchain-yarmarki {
+	Added: server_tokens off;
+}
+location = /city/festivals/autumn/ {
+	Added: server_tokens off;
+}
+location = /city/festivals/seasons/christmas {
+	Added: server_tokens off;
+}
+location = /city/festivals/seasons/christmas/ {
+	Added: server_tokens off;
+}
+location = /city/festivals/seasons/newyear {
+	Added: server_tokens off;
+}
+location = /city/festivals/seasons/newyear2019/ {
+	Added: server_tokens off;
+}
+location = /city/projects/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /city/projects/Renovation/ {
+	Added: server_tokens off;
+}
+location = /city/projects/blago {
+	Added: server_tokens off;
+}
+location = /city/projects/goodatlas {
+	Added: server_tokens off;
+}
+location = /city/projects/luzhniki {
+	Added: proxy_redirect off;
+}
+location = /city/projects/mosapps {
+	Added: server_tokens off;
+}
+location = /city/projects/zaryadye/ {
+	Added: server_tokens off;
+}
+location = /city/seasons/ {
+	Added: server_tokens off;
+}
+location = /clinics {
+	Added: server_tokens off;
+}
+location = /coachregister {
+	Added: server_tokens off;
+}
+location = /conference {
+	Added: server_tokens off;
+}
+location = /cult {
+	Added: proxy_redirect off;
+}
+location = /ditconf {
+	Added: server_tokens off;
+}
+location = /dogm-rating {
+	Added: proxy_redirect off;
+}
+location = /dogm-rating-2018 {
+	Added: proxy_redirect off;
+}
+location = /dom-i-dvor {
+	Added: proxy_redirect off;
+}
+location = /dostupnost/ {
+	Added: server_tokens off;
+}
+location = /ekologiya {
+	Added: proxy_redirect off;
+}
+location = /en/ {
+	Added: proxy_redirect off;
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location = /en/answer {
+	Added: server_tokens off;
+}
+location = /en/search {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /golos-mfc/ {
+	Added: server_tokens off;
+}
+location = /google0e4fd4bcd8590b91.html {
+	Added: server_tokens off;
+}
+location = /google2bfbafe15ea57a29.html {
+	Added: server_tokens off;
+}
+location = /hotwater/ {
+	Added: server_tokens off;
+}
+location = /instructions/admin {
+	Added: server_tokens off;
+}
+location = /it-centre/ {
+	Added: server_tokens off;
+}
+location = /karta-moskvicha {
+	Added: server_tokens off;
+}
+location = /knigi/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location = /knigi/manifest.json {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /knigi/my-profile/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /knigi/my-profile/favorites/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /knigi/my-profile/new-order/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /knigi/my-profile/onhands/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /knigi/my-profile/order/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /knigi/my-profile/orders/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /knigi/search/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location = /legal {
+	Added: proxy_redirect off;
+}
+location = /leto/ {
+	Added: server_tokens off;
+}
+location = /luzhniki/ {
+	Added: server_tokens off;
+}
+location = /map {
+	Added: server_tokens off;
+}
+location = /mosapps {
+	Added: server_tokens off;
+}
+location = /mr_forum/ {
+	Added: server_tokens off;
+}
+location = /my/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /my/parking/ {
+	Added: server_tokens off;
+}
+location = /nauka-i-innovacii {
+	Added: proxy_redirect off;
+}
+location = /news/item/16981073/ {
+	Added: server_tokens off;
+}
+location = /news/item/5404073/ {
+	Added: server_tokens off;
+}
+location = /newyearsovety {
+	Added: server_tokens off;
+}
+location = /otrasli {
+	Added: proxy_redirect off;
+}
+location = /otrasli-static {
+	Added: proxy_redirect off;
+}
+location = /otvet {
+	Added: proxy_redirect off;
+}
+location = /otvet-socpodderjka/kak-polzovatsya-socialnim-taksi/ {
+	Added: server_tokens off;
+}
+location = /otvet-static {
+	Added: proxy_redirect off;
+}
+location = /otvet-stroitelstvo/itogi-golosovaniya-zhitelej-po-proektu-programmy-renovacii {
+	Added: proxy_redirect off;
+}
+location = /otvet-tehnologii-moskvi/chto-delat-esli-slomalsya-gadjet/ {
+	Added: server_tokens off;
+}
+location = /parki-i-zelenie-zoni {
+	Added: proxy_redirect off;
+}
+location = /parking/ {
+	Added: server_tokens off;
+}
+location = /pgu/ru/about/ {
+	Added: server_tokens off;
+}
+location = /poluchenie-zagranpasporta/ {
+	Added: server_tokens off;
+}
+location = /privacypolicy/socmon/ {
+	Added: server_tokens off;
+}
+location = /proverka-golosa/ {
+	Added: server_tokens off;
+}
+location = /renovation/ {
+	Added: server_tokens off;
+}
+location = /robots.txt {
+	Added: server_tokens off;
+}
+location = /root/parking/ {
+	Added: server_tokens off;
+}
+location = /search {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /search-demo/abis {
+	Added: server_tokens off;
+}
+location = /search-demo/hobby {
+	Added: server_tokens off;
+}
+location = /search-demo/med {
+	Added: server_tokens off;
+}
+location = /search-demo/mes {
+	Added: server_tokens off;
+}
+location = /search-demo/mfc {
+	Added: server_tokens off;
+}
+location = /search-demo/okc {
+	Added: server_tokens off;
+}
+location = /search-demo/onmap {
+	Added: server_tokens off;
+}
+location = /search-demo/vuz {
+	Added: server_tokens off;
+}
+location = /security.txt {
+	Added: server_tokens off;
+}
+location = /services/pereezd {
+	Added: server_tokens off;
+}
+location = /services/pomoshch-v-pereezde/reglament-predostavlenia-elektronnogo-servisa-pomosch-v-organizacii-pereezda.pdf {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /services/zapis-k-vrachu {
+	Added: server_tokens off;
+}
+location = /sitemap-moi-raion.xml {
+	Added: server_tokens off;
+}
+location = /sitemap-tags.xml {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location = /socpodderjka {
+	Added: proxy_redirect off;
+}
+location = /stroitelstvo {
+	Added: proxy_redirect off;
+}
+location = /testrobots.txt {
+	Added: server_tokens off;
+}
+location = /turizm {
+	Added: proxy_redirect off;
+}
+location = /upload/documents/docs/perechen_domov_dlya_prog_renovacii.pdf {
+	Added: server_tokens off;
+}
+location = /upravlyaem-gorodom {
+	Added: proxy_redirect off;
+}
+location = /uslugi/admin/ {
+	Added: server_tokens off;
+}
+location = /uslugi/api/ {
+	Added: server_tokens off;
+}
+location = /uslugi/dokumenty/conference {
+	Added: server_tokens off;
+}
+location = /uslugi/id/ {
+	Added: server_tokens off;
+}
+location = /uslugi/news/ {
+	Added: server_tokens off;
+}
+location = /vibor2018/ {
+	Added: server_tokens off;
+}
+location = /vibory2018/ {
+	Added: server_tokens off;
+}
+location = /vybor2018/ {
+	Added: server_tokens off;
+}
+location = /vybory2018/ {
+	Added: server_tokens off;
+}
+location = /yandex_0c7daaad0cf194d3.html {
+	Added: server_tokens off;
+}
+location = /yandex_10ca9b03db4860d1.html {
+	Added: server_tokens off;
+}
+location = /yandex_1c06c34b58a9f8c8.html {
+	Added: server_tokens off;
+}
+location = /yandex_4f3f1d250b1afe55.html {
+	Added: server_tokens off;
+}
+location = /yandex_5d4d84eadc0ff265.html {
+	Added: server_tokens off;
+}
+location = /yandex_61bdb35d51f78cee.html {
+	Added: server_tokens off;
+}
+location = /yandex_898a06892b678bf8.html {
+	Added: server_tokens off;
+}
+location = /yandex_aac374cf8168e87d.html {
+	Added: server_tokens off;
+}
+location = /yandex_ada20f70198d2619.html {
+	Added: server_tokens off;
+}
+location = /yandex_cab5780c2cca49c9.html {
+	Added: server_tokens off;
+}
+location = /yandex_f7a10aef204ae853.html {
+	Added: server_tokens off;
+}
+location = /zaryadye/ {
+	Added: server_tokens off;
+}
+location @other_nginx {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location @other_nginx_or_prod {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location @redirect-to-catalog {
+	Added: server_tokens off;
+}
+location ^~ /Content/mosru-landing/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /Renovation.pdf {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /Renovation_list.pdf {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /Renovation_vote.pdf {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /afisha/tickets/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /afisha/tickets/_next/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /afisha/tickets/oferta/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /aisearch/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/abis_biconlogger/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/abis_collections/get_collection/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /aisearch/abis_collections/og/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /aisearch/abis_collections/sitemap/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /aisearch/abis_collections/swagger {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/abis_common_suggest/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/abis_frontapi/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/ais_searchapi/en/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/ais_searchapi/ru/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/ais_searchapi_distro/en/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/ais_searchapi_distro/ru/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/biconlogger/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/category_classificator/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/clickrate/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/facility/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/frontend/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/frontend/api/v1/widgets/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/geo_classificator/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/government_suggest/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/history_suggest/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/hwsuggest/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/hwsuggest/api/v1/data/errors/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/hwsuggest/api/v1/data/fix/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/activity/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/advisor/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/answer/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/application/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/calendar/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/calendar_en/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/catalog/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/city_project/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/complaint/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/conference/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/dataset/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/document/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/document_oiv/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/dom/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/employee/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/event/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/event_en/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/evp/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/facility/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/faculty/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/fast/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/festival/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/garbage/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/geo/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/image/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/info/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/infographic/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/interview/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/library/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/mainphoto/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/mainvideo/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/maplayer/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/mapobject/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/mbm/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/meddep/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/mydistrict/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/news/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/news_en/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/organization/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/page/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/person/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/pgu/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/pgu_cost/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/photo/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/presentation/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/project/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/project_oiv/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/release/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/specialitie/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/static/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/telegram/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/transcript/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/university/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/vaccination/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/video/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/vuz/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/vyzov_mastera_defect/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/indexation/widget/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/master_biconlogger/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/med_biconlogger/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/mixed_suggest/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/mydistrict_suggest/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/spellchecker/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/suggest/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/url_classificator/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/user_metrics_biconlogger/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/vaccination/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/vuz_frontapi/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/vuz_reciver/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/vyzov_mastera_frontapi {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/weather/ {
+	Added: server_tokens off;
+}
+location ^~ /aisearch/wizards/ {
+	Added: server_tokens off;
+}
+location ^~ /altmosmvc/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /altmosmvc/api/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /altmosmvc/api/renovation/v2/ {
+	Added: server_tokens off;
+}
+location ^~ /altmosmvc/api/v1/taxi/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /altmosmvc/static/dolgoletie/build {
+	Added: server_tokens off;
+}
+location ^~ /altmosmvc/static/dolgoletie/build/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /altmosprx/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /altmosprx/api/1/geo {
+	Added: server_tokens off;
+}
+location ^~ /altmosprx/api/1/renovation {
+	Added: server_tokens off;
+}
+location ^~ /altmosprx/api/1/renovation/hidden {
+	Added: server_tokens off;
+}
+location ^~ /amp/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /amp/authority/messages/ {
+	Added: server_tokens off;
+}
+location ^~ /amp/en/afisha/ {
+	Added: server_tokens off;
+}
+location ^~ /amp/images/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /ampm {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /api/acs/ {
+	Added: server_tokens off;
+}
+location ^~ /api/acs/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/acs/v {
+	Added: server_tokens off;
+}
+location ^~ /api/address-search {
+	Added: server_tokens off;
+}
+location ^~ /api/address-search/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/altmosmvc/v1/frontend/json/ru/districts/cards_assembler {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/arenda-sport/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/asp/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/asp/v {
+	Added: server_tokens off;
+}
+location ^~ /api/assembler/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/authority {
+	Added: server_tokens off;
+}
+location ^~ /api/calendar-archive/ {
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/canonical/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/canonical/v1/backend/ {
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/canonical/v1/frontend/ {
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/captcha/v {
+	Added: server_tokens off;
+}
+location ^~ /api/catalogue {
+	Added: server_tokens off;
+}
+location ^~ /api/clinics {
+	Added: proxy_redirect off;
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ^~ /api/cma-rating {
+	Added: server_tokens off;
+}
+location ^~ /api/cma/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/cma/v {
+	Added: server_tokens off;
+}
+location ^~ /api/content/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/ddcs/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/ddcs/v {
+	Added: server_tokens off;
+}
+location ^~ /api/directories/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/documents/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/dolgoletie/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/event-bus/ {
+	Added: server_tokens off;
+}
+location ^~ /api/ext/uik/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/feed/negotiate/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/feed/negotiate/instructions {
+	Added: server_tokens off;
+}
+location ^~ /api/feedback {
+	Added: server_tokens off;
+}
+location ^~ /api/findep-atypical {
+	Added: proxy_redirect off;
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ^~ /api/glossary {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/instructions {
+	Added: server_tokens off;
+}
+location ^~ /api/karta-moskvicha/v {
+	Added: proxy_redirect off;
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ^~ /api/locks/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/locks/v1/backend/json/events {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/main-page/v1/ru/active-citizen {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/main-page/v1/ru/crowd {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/main-page/v1/ru/moscow-diameters {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/main-page/v1/ru/parks {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/main-page/v1/ru/renovation {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/main-page/v2/ru/crowd {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/map/ {
+	Added: server_tokens off;
+}
+location ^~ /api/messenger {
+	Added: server_tokens off;
+}
+location ^~ /api/mfc/v1 {
+	Added: server_tokens off;
+}
+location ^~ /api/moi-raion {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/moldings-proxy/ {
+	Added: server_tokens off;
+}
+location ^~ /api/moswidgets {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/mover-booking {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/mss-facade {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/address/by-fias {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/elk {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/our-tree {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/rental-public-space {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/search-region {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/search-street {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/towed-vehicle {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/ums {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/utility-meter {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v1/water-meter {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v2/check-serve-by-eirc {
+	Added: server_tokens off;
+}
+location ^~ /api/mss-facade/v2/search-address {
+	Added: server_tokens off;
+}
+location ^~ /api/muf-vote/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/my/notifier/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/my/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/my/v1 {
+	Added: server_tokens off;
+}
+location ^~ /api/news-scrapper/ {
+	Added: server_tokens off;
+}
+location ^~ /api/our-tree {
+	Added: server_tokens off;
+}
+location ^~ /api/our-tree/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/package-registry/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/package-registry/v {
+	Added: server_tokens off;
+}
+location ^~ /api/pages/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/payments/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/payments/v {
+	Added: server_tokens off;
+}
+location ^~ /api/philanthropy/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/reception/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/reception/v2/ {
+	Added: server_tokens off;
+}
+location ^~ /api/renovation-moving/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/rental-public-space {
+	Added: server_tokens off;
+}
+location ^~ /api/rental-public-space/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/saving-water/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /api/shortlinks/ {
+	Added: server_tokens off;
+}
+location ^~ /api/sitemap-web {
+	Added: server_tokens off;
+}
+location ^~ /api/special-projects/ {
+	Added: include /etc/nginx/locations/api_error_page.conf; 
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/structure/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/support/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/telegram/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/ticketdit-admin/ {
+	Added: include /etc/nginx/locations/api_error_page.conf; 
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/towed-vehicle {
+	Added: server_tokens off;
+}
+location ^~ /api/towed-vehicle/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/ums {
+	Added: server_tokens off;
+}
+location ^~ /api/ums/swagger {
+	Added: server_tokens off;
+}
+location ^~ /api/utility-meter {
+	Added: server_tokens off;
+}
+location ^~ /api/utilizer/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/vaccination-sputnik-lite/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/vaccination/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /api/water-meter {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /api/water-meter/swagger {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /app/ {
+	Added: server_tokens off;
+}
+location ^~ /appeals/ {
+	Added: server_tokens off;
+}
+location ^~ /apple-touch-icon {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /arenda {
+	Added: server_tokens off;
+}
+location ^~ /arenda-sport/catalog/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /arenda/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /assets/clinics/ {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: proxy_redirect off;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ^~ /assets/karta-moskvicha/ {
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ^~ /assets/main-page {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /assets/parable/ {
+	Added: proxy_redirect off;
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ^~ /assets/services/map/ {
+	Added: server_tokens off;
+}
+location ^~ /assets/services/moi-raion {
+	Added: server_tokens off;
+}
+location ^~ /atk/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /authority/list/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /authority/person/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /authority/territory/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /backend/itkms/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /backend/itkms/backend/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /bchelastic {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /bchelastic/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /bchfrontstatic/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /bitrix/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /blockchain-yarmarki {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /blockchain-yarmarki/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /blockchain-yarmarki/bchback/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /catalogue-static/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /city/festivals/ {
+	Added: server_tokens off;
+}
+location ^~ /city/festivals/autumn/ {
+	Added: server_tokens off;
+}
+location ^~ /city/projects/_next/static/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /city/projects/blago/_next/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /city/projects/luzhniki/ {
+	Added: proxy_redirect off;
+}
+location ^~ /city/projects/metrostroyka/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /city/projects/mosapps/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /city/projects/mosapps_dev/ {
+	Added: server_tokens off;
+}
+location ^~ /city/projects/mr_docs {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /city/projects/municipality-vote-map/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /city/projects/newyear2019/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /city/projects/noviydom/ {
+	Added: server_tokens off;
+}
+location ^~ /city/projects/renovation/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /city/projects/vuz/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /city/seasons/ {
+	Added: server_tokens off;
+}
+location ^~ /city/seasons/assets/ {
+	Added: server_tokens off;
+}
+location ^~ /citym/projects/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /clinics/ {
+	Added: server_tokens off;
+}
+location ^~ /cn/ {
+	Added: server_tokens off;
+}
+location ^~ /coachregister/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /conference/_next/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /covid-19-commission-dashboard {
+	Added: server_tokens off;
+}
+location ^~ /covid-19-commission-data {
+	Added: server_tokens off;
+}
+location ^~ /covid-19-dashboard {
+	Added: server_tokens off;
+}
+location ^~ /covid-19-data/api/(world|subjects) {
+	Added: server_tokens off;
+}
+location ^~ /covid-19-deptrans {
+	Added: server_tokens off;
+}
+location ^~ /covid-19-widgets {
+	Added: server_tokens off;
+}
+location ^~ /covid-19/ {
+	Added: server_tokens off;
+}
+location ^~ /covid-gift/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /cult/ {
+	Added: proxy_redirect off;
+}
+location ^~ /depnpol/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /depr/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dgi/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dgkh/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dgp/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dipp/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dit/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /ditconf/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dkn/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dkr/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dodms/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dogm-rating-2018/ {
+	Added: proxy_redirect off;
+}
+location ^~ /dogm-rating/ {
+	Added: proxy_redirect off;
+}
+location ^~ /dolgoletie-app-ts {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /dom-i-dvor/ {
+	Added: proxy_redirect off;
+}
+location ^~ /donm/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dpir/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /drbez/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /drnt/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /ds/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dsmir/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dszn/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dt/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dtoiv/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dtu/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dvms/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /dzdrav/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /eco/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /ekologiya/ {
+	Added: proxy_redirect off;
+}
+location ^~ /elastic-districts {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /elastic-districts/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /elastic-fairs {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /elastic-fairs/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /elastic-periods {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /elastic-places {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /elastic-regions {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /elastic-regions/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /emercom/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /en/answer/ {
+	Added: proxy_redirect off;
+}
+location ^~ /en/city/festivals/ {
+	Added: server_tokens off;
+}
+location ^~ /en/city/seasons/ {
+	Added: server_tokens off;
+}
+location ^~ /feedback/personal-reception/ {
+	Added: server_tokens off;
+}
+location ^~ /feedback/personal-reception/new/ {
+	Added: server_tokens off;
+}
+location ^~ /findep/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /front/backend/afisha/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /front/backend/catalogue/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /front/backend/documents/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /front/backend/glossary/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /front/backend/newsfeed/messenger-widget-app/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /front/backend/reception/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /front/backend/shortlinks/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /front/backend/story/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /front/markup/aisearch {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /front/markup/search {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /front/markup/viewer {
+	Added: server_tokens off;
+}
+location ^~ /front/markup/viewer/ {
+	Added: server_tokens off;
+}
+location ^~ /geo-test/ {
+	Added: server_tokens off;
+}
+location ^~ /ggi/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /glavkontrol/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /image_error/ {
+	Added: server_tokens off;
+}
+location ^~ /instructions/admin/ {
+	Added: proxy_redirect off;
+}
+location ^~ /invest/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /karta-moskvicha/ {
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ^~ /karta-moskvicha/services/unlock {
+	Added: server_tokens off;
+}
+location ^~ /kgu/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /knigi/book/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /knigi/error/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /knigi/favicons/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /knigi/fonts/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /knigi/get_collection/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /knigi/images/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /knigi/og/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /knigi/podborka/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /knigi/podborki/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /knigi/scripts/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /knigi/sitemap/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /knigi/static/ {
+	Added: proxy_set_header Host $host;
+	Added: server_tokens off;
+}
+location ^~ /knigi/styles/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /kos/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /kultura/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /legal/ {
+	Added: proxy_redirect off;
+}
+location ^~ /local/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /lp/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /madi/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /map-panorama/ {
+	Added: server_tokens off;
+}
+location ^~ /map/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /map/3d/ {
+	Added: server_tokens off;
+}
+location ^~ /map/admin/ {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /mes/ {
+	Added: server_tokens off;
+}
+location ^~ /mesh/ {
+	Added: server_tokens off;
+}
+location ^~ /metrostroyka/ {
+	Added: server_tokens off;
+}
+location ^~ /mgi/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /mka/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /mke/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /mobile/ {
+	Added: server_tokens off;
+}
+location ^~ /moi-raion {
+	Added: server_tokens off;
+}
+location ^~ /mosapps/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /mosarchiv/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /mosgik/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /moskomsport/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /moskomvet/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /moswidgets/ {
+	Added: server_tokens off;
+}
+location ^~ /motilda-app/admin/ {
+	Added: server_tokens off;
+	Replaced: proxy_set_header Host $proxy_host; -> $host;
+}
+location ^~ /mr_docs {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /msr/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /muf-widget/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /nauka-i-innovacii/ {
+	Added: proxy_redirect off;
+}
+location ^~ /new-year-tilda-widget/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /newSearchStatic/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /newyearsovety/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /oati/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /open-graph {
+	Added: server_tokens off;
+}
+location ^~ /open-graph/v1/backend/show {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: server_tokens off;
+}
+location ^~ /otrasli-static/ {
+	Added: proxy_redirect off;
+}
+location ^~ /otrasli/ {
+	Added: proxy_redirect off;
+}
+location ^~ /otvet- {
+	Added: proxy_redirect off;
+}
+location ^~ /otvet-static/ {
+	Added: proxy_redirect off;
+}
+location ^~ /otvet-stroitelstvo/itogi-golosovaniya-zhitelej-po-proektu-programmy-renovacii/ {
+	Added: proxy_redirect off;
+}
+location ^~ /otvet/ {
+	Added: proxy_redirect off;
+}
+location ^~ /otvet/instruction/preview/ {
+	Added: proxy_redirect off;
+}
+location ^~ /parki-i-zelenie-zoni/ {
+	Added: proxy_redirect off;
+}
+location ^~ /parma.siv.fines.web.client/ {
+	Added: server_tokens off;
+}
+location ^~ /philanthropy/admin/ {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /philanthropy/bundles/ {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /poluchenie-zagranpasporta/ {
+	Added: server_tokens off;
+}
+location ^~ /programmarenovacii.pdf {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /ritual/catalog/ {
+	Added: server_tokens off;
+}
+location ^~ /rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /rss/yandex/oiv/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /ru/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /saving-water {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /search-demo/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/abis/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/hobby/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/med/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/mes/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/mfc/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/okc/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/onmap/ {
+	Added: server_tokens off;
+}
+location ^~ /search-demo/vuz/ {
+	Added: server_tokens off;
+}
+location ^~ /services/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /services/autohistory/ {
+	Added: server_tokens off;
+}
+location ^~ /services/centry-gosudarstvennyh-uslug {
+	Added: server_tokens off;
+}
+location ^~ /services/centry-gosudarstvennyh-uslug/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /services/centry-gosudarstvennyh-uslug/static/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /services/dkp/ {
+	Added: server_tokens off;
+}
+location ^~ /services/evakuirovali-avto {
+	Added: server_tokens off;
+}
+location ^~ /services/gost-test {
+	Added: server_tokens off;
+}
+location ^~ /services/gost-test/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /services/mnogodetnaya-semia {
+	Added: server_tokens off;
+}
+location ^~ /services/nashe-derevo {
+	Added: server_tokens off;
+}
+location ^~ /services/nashe-derevo/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /services/nashe-derevo/(.*[^\/])$ {
+	Added: server_tokens off;
+}
+location ^~ /services/obzhalovat-shtraf-za-samoizolyaciu {
+	Added: server_tokens off;
+}
+location ^~ /services/pereezd/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /services/pereezd/general {
+	Added: server_tokens off;
+}
+location ^~ /services/pereezd/general/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /services/podat-apellyatsiyu-na-rezultaty-gia {
+	Added: server_tokens off;
+}
+location ^~ /services/podat-apellyatsiyu-na-rezultaty-gia/ {
+	Added: server_tokens off;
+}
+location ^~ /services/podat-apellyatsiyu-na-rezultaty-gia/(.*[^\/])$ {
+	Added: server_tokens off;
+}
+location ^~ /services/pokazaniya-vodi-i-tepla {
+	Added: server_tokens off;
+}
+location ^~ /services/pokazaniya-vodi-i-tepla/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+}
+location ^~ /services/pomoshch-v-pereezde {
+	Added: server_tokens off;
+}
+location ^~ /services/pomoshch-v-pereezde/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /services/poverka-schetchikov-vody/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /services/prosmotr-i-oplata-epd-za-nezhilye-pomeshcheniya {
+	Added: server_tokens off;
+}
+location ^~ /services/proverit-polis-oms {
+	Added: server_tokens off;
+}
+location ^~ /services/proverit-prikreplenie-k-poliklinike {
+	Added: server_tokens off;
+}
+location ^~ /services/proverit-prikreplenie-k-poliklinike/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /services/registracia-gia {
+	Added: server_tokens off;
+}
+location ^~ /services/vyvoz {
+	Added: server_tokens off;
+}
+location ^~ /services/vyvoz/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /services/vyzov-mastera {
+	Added: server_tokens off;
+}
+location ^~ /services/vyzov-mastera/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /shared/acs/ {
+	Added: server_tokens off;
+}
+location ^~ /shtrafy/ {
+	Added: server_tokens off;
+}
+location ^~ /sitemap-web {
+	Added: server_tokens off;
+}
+location ^~ /sitemap.xml {
+	Added: server_tokens off;
+}
+location ^~ /sitemap/ {
+	Added: server_tokens off;
+}
+location ^~ /smartkvartal {
+	Added: server_tokens off;
+}
+location ^~ /smartkvartal/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /socpodderjka/ {
+	Added: proxy_redirect off;
+}
+location ^~ /special-projects/admin/ {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /special-projects/bundles/ {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /spisokploschadok.pdf {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /sport {
+	Added: server_tokens off;
+}
+location ^~ /sport/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /sportsovetnik/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /sportsovetnik/services {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /start-place.pdf {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /static/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /status_for_citrix {
+	Added: server_tokens off;
+}
+location ^~ /stroinadzor/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /stroitelstvo/ {
+	Added: proxy_redirect off;
+}
+location ^~ /swagger/clinics-schedule {
+	Added: server_tokens off;
+}
+location ^~ /swagger/cma-rating {
+	Added: server_tokens off;
+}
+location ^~ /swagger/special-projects {
+	Added: server_tokens off;
+}
+location ^~ /swagger/utility-meter {
+	Added: server_tokens off;
+}
+location ^~ /tender/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /test-altmos/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /tickets-admin/ {
+	Added: include /etc/nginx/locations/error_pages.conf; 
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /tourism/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /transactions {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /turizm/ {
+	Added: proxy_redirect off;
+}
+location ^~ /ud/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /ugsk/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /upload/.nginx/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/adv/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/care/reports/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/common/mfc_v_5/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /upload/documents/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/feedback2/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/fonts/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/form/questions/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/internal-reports/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/mos.advisor/feedback/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/mos.reception/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/nginx_proxy_temp {
+	Added: server_tokens off;
+}
+location ^~ /upload/photobank/common/upload/mediagallery/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /upload/schmetterling/ {
+	Added: server_tokens off;
+}
+location ^~ /upload/trp/ {
+	Added: server_tokens off;
+}
+location ^~ /upravlyaem-gorodom/ {
+	Added: proxy_redirect off;
+}
+location ^~ /uslugi/dokumenty/conference/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /uslugi/mirovoy-sud/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /visit/gibddlicense/ {
+	Added: server_tokens off;
+}
+location ^~ /visit/gibddregister/ {
+	Added: server_tokens off;
+}
+location ^~ /visit/madi/ {
+	Added: server_tokens off;
+}
+location ^~ /vote-map/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /vuz/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~ /webvisor-console {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /webvisor/record/static {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /widget-collection/ {
+	Added: server_tokens off;
+}
+location ^~ /widget-dolgolet-form/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /widget-soc-monitoring {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /widget-spec-share/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /widget-tilda-map/ {
+	Added: server_tokens off;
+}
+location ^~ /widget-vaccination-map/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ^~ /widget-voting-mayor-next/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /widget-voting-mayor-next2/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /widget-voting-mayor-reg/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /widget-voting/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~ /zags/news/rss/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~/1Cv82dt/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ^~/front/backend/afisha {
+	Added: server_tokens off;
+}
+location ^~/front/backend/canonical/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ^~/front/backend/catalogue {
+	Added: server_tokens off;
+}
+location ^~/front/backend/glossary {
+	Added: server_tokens off;
+}
+location ^~/front/backend/shortlinks {
+	Added: server_tokens off;
+}
+location ^~/sioprZ/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~ /api/sentry/ {
+	Added: server_tokens off;
+}
+location ~ /composer\.(json|lock) {
+	Added: server_tokens off;
+}
+location ~ ^(/en)?/search/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~ ^/api/doctor-record {
+	Added: server_tokens off;
+}
+location ~ ^/api/mss-facade/v([0-9]+)/doctor-record {
+	Added: server_tokens off;
+}
+location ~ ^/covid-19\. {
+	Added: server_tokens off;
+}
+location ~ ^/karta-moskvicha-* {
+	Added: proxy_set_header Host $host;
+	Added: proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	Added: proxy_set_header X-Real-IP $remote_addr;
+	Added: server_tokens off;
+}
+location ~* /city/projects/blago/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~* /conference/ {
+	Added: proxy_hide_header X-Powered-By;
+	Added: server_tokens off;
+}
+location ~* /mos.ru.avtokod.webapi.client/(.*\.(png|js|woff|svg))$ {
+	Added: server_tokens off;
+}
+location ~* ^(/en)?/city/progress/ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~* ^.+altmosprx.+$ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~* ^/(?!(search)).*/\.(?!(default)) {
+	Added: server_tokens off;
+}
+location ~* ^/api/telegram/v[0-9]+/(frontend|backend)/ {
+	Added: server_tokens off;
+}
+location ~* ^/authority/discussion/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ~* ^/authority/documents/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ~* ^/authority/messages/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ~* ^/authority/projects/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ~* ^/authority/structure/[^/]+/view/rss/?$ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~* ^/bitrix/(modules|php_interface|updates)/ {
+	Added: server_tokens off;
+}
+location ~* ^/feedback/ {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ~* ^/renovation/[-\w]+/?$ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~* ^/ritual/(?!reserve|reservation) {
+	Added: proxy_hide_header X-Powered-By;
+}
+location ~* ^/sitemap-(?!web)(.+)\/$ {
+	Added: server_tokens off;
+}
+location ~* ^/sitemap_.+\.xml$ {
+	Added: server_tokens off;
+}
+location ~* ^\/.+\.(bmp|bz2|css|eot|flv|gif|gz|ico|jpeg|jpg|js|json|mp4|pdf|png|rar|rtf|svg|swf|tar|tgz|ttf|txt|wav|woff|woff2|zip)$ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~* ^\/.+\.html$ {
+	Added: proxy_redirect off;
+	Added: server_tokens off;
+}
+location ~* ^\/upload\/.+\.(7z|avi|bin|bmp|bz2|css|csv|doc|docx|eot|flv|gif|glb|gltf|gz|html|ico|jpeg|jpg|js|json|mkv|mov|mp3|pcx|pdf|png|pps|ppt|pptx|rar|rtf|sig|svg|swf|tar|tif|tiff|tgz|ttf|txt|wav|webm|webp|wma|wmv|woff|woff2|xls|xlsx|xlt|xsd|xlsm|xml|zip)$ {
+	Added: server_tokens off;
+}
+location ~* ^\/upload\/.+\.(mp4)$ {
+	Added: server_tokens off;
+}

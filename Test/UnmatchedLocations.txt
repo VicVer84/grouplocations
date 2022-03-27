@@ -1,0 +1,1136 @@
+<%= render "locations/acs_swagger.conf.erb" -%> {
+  <%= render "locations/address-search-api_swagger.conf.erb" -%>
+  <%= render "locations/aisearch-abis-collections_swagger.conf.erb" -%>
+  <%= render "locations/arenda-spaces-api_swagger.conf.erb" -%>
+  <%= render "locations/asp_swagger.conf.erb" -%>
+  <%= render "locations/assembler_swagger.conf.erb" -%>
+  <%= render "locations/canonical_api_swagger.conf.erb" -%>
+  <%= render "locations/clinics_swagger.conf.erb" -%>
+  <%= render "locations/cma_swagger.conf.erb" -%>
+  <%= render "locations/cma-rating-api_swagger.conf.erb" -%>
+  <%= render "locations/content_api_swagger.conf.erb" -%>
+  <%= render "locations/ddcs_swagger.conf.erb" -%>
+  <%= render "locations/directories-app_swagger.conf.erb" -%>
+  <%= render "locations/documents_api_swagger.conf.erb" -%>
+  <%= render "locations/my_api_swagger.conf.erb" -%>
+  <%= render "locations/my_notifier_swagger.conf.erb" -%>
+  <%= render "locations/our-tree-api_swagger.conf.erb" -%>
+  <%= render "locations/package_registry_swagger.conf.erb" -%>
+  <%= render "locations/pages_api_swagger.conf.erb" -%>
+  <%= render "locations/payments_api_swagger.conf.erb" -%>
+  <%= render "locations/pgu_new_swagger.conf.erb" -%>
+  <%= render "locations/reception_api_swagger.conf.erb" -%>
+  <%= render "locations/special-projects-admin_swagger.conf.erb" -%>
+  <%= render "locations/structure_api_swagger.conf.erb" -%>
+  <%= render "locations/support_api_swagger.conf.erb" -%>
+  <%= render "locations/telegram-app_swagger.conf.erb" -%>
+  <%= render "locations/towed-vehicle-api_swagger.conf.erb" -%>
+  <%= render "locations/ums-api_swagger.conf.erb" -%>
+  <%= render "locations/utility-meter-api_swagger.conf.erb" -%>
+  <%= render "locations/water-meter-inspection-api_swagger.conf.erb" -%>
+}
+
+location /pgu {
+  access_log /app_logs/nginx/pgu.log json;
+  set $application_identifier "pgu";
+  return 301 $scheme://$host/services/uslugi/;
+    location ^~ /pgu/ru {
+      location ~* ^/pgu/ru/?$ { return 301 $scheme://$host/services/uslugi/; }
+      rewrite ^/pgu/(.+)$ /$1 break;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      expires -1;
+      add_header Cache-Control no-cache;
+      proxy_ssl_trusted_certificate /etc/pki/tls/certs/ca-bundle.crt;
+      proxy_ssl_verify on;
+      proxy_ssl_verify_depth 2;
+      proxy_buffering off;
+      proxy_pass https://pgu-dev.mos.ru;
+    }
+      location ^~ /pgu/common {
+      rewrite ^/pgu/(.+)$ /$1 break;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      expires -1;
+      add_header Cache-Control no-cache;
+      proxy_ssl_trusted_certificate /etc/pki/tls/certs/ca-bundle.crt;
+      proxy_ssl_verify on;
+      proxy_ssl_verify_depth 2;
+      proxy_buffering off;
+      proxy_pass https://pgu-dev.mos.ru;
+    }
+  }
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location = /.well-known/pki-validation/E6134F2D7D20E008AFB2F91BB3E384D7.txt {
+  rewrite ^(.*) /E6134F2D7D20E008AFB2F91BB3E384D7.txt break;
+  proxy_pass http://markup-mos;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location = /my/ {
+  rewrite ^/my/  https://$host/city/projects/my/  permanent;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location = /services/pomoshch-v-pereezde/reglament-predostavlenia-elektronnogo-servisa-pomosch-v-organizacii-pereezda.pdf {
+  rewrite ^/(.*) /upload/common/reglament-predostavlenia-elektronnogo-servosa-pomosch-v-organizacii-pereezda.pdf last;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /afisha/tickets/ {
+  access_log off;
+  include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+  rewrite ^/afisha/tickets/events/656/    https://$host/afisha/event/422257/     permanent;
+  rewrite ^/afisha/tickets/events/666/    https://$host/afisha/event/423257/     permanent;
+  rewrite ^/afisha/tickets/events/667/    https://$host/afisha/event/427257/     permanent;
+  rewrite ^/afisha/tickets/events/668/    https://$host/afisha/event/424257/     permanent;
+  rewrite ^/afisha/tickets/events/670/    https://$host/afisha/event/429257/     permanent;
+  rewrite ^/afisha/tickets/events/696/    https://$host/afisha/event/426257/     permanent;
+  rewrite ^/afisha/tickets/events/705/    https://$host/afisha/event/428257/     permanent;
+  rewrite ^/afisha/tickets/events/962/    https://$host/afisha/event/433257/     permanent;
+  rewrite ^/afisha/tickets/events/1093/   https://$host/afisha/event/355257/     permanent;
+  rewrite ^/afisha/tickets/events/1154/   https://$host/afisha/event/362257/     permanent;
+  rewrite ^/afisha/tickets/events/1287/   https://$host/afisha/event/365257/     permanent;
+  rewrite ^/afisha/tickets/events/1341/   https://$host/afisha/event/353257/     permanent;
+  rewrite ^/afisha/tickets/events/1361/   https://$host/afisha/event/593257/     permanent;
+  rewrite ^/afisha/tickets/events/1428/   https://$host/afisha/event/902257/     permanent;
+  rewrite ^/afisha/tickets/events/1446/   https://$host/afisha/event/768257/     permanent;
+  rewrite ^/afisha/tickets/events/1454/   https://$host/afisha/event/442257/     permanent;
+  rewrite ^/afisha/tickets/events/1459/   https://$host/afisha/event/537257/     permanent;
+  rewrite ^/afisha/tickets/events/1473/   https://$host/afisha/event/414257/     permanent;
+  rewrite ^/afisha/tickets/events/1651/   https://$host/afisha/event/703257/     permanent;
+  rewrite ^/afisha/tickets/events/1653/   https://$host/afisha/event/457257/     permanent;
+  rewrite ^/afisha/tickets/events/1714/   https://$host/afisha/event/588257/     permanent;
+  rewrite ^/afisha/tickets/events/1765/   https://$host/afisha/event/410257/     permanent;
+  rewrite ^/afisha/tickets/events/1768/   https://$host/afisha/event/359257/     permanent;
+  rewrite ^/afisha/tickets/events/1773/   https://$host/afisha/event/364257/     permanent;
+  rewrite ^/afisha/tickets/events/1774/   https://$host/afisha/event/419257/     permanent;
+  rewrite ^/afisha/tickets/events/1777/   https://$host/afisha/event/9646257/    permanent;
+  rewrite ^/afisha/tickets/events/1779/   https://$host/afisha/event/921257/     permanent;
+  rewrite ^/afisha/tickets/events/1780/   https://$host/afisha/event/406257/     permanent;
+  rewrite ^/afisha/tickets/events/1787/   https://$host/afisha/event/409257/     permanent;
+  rewrite ^/afisha/tickets/events/1852/   https://$host/afisha/event/539257/     permanent;
+  rewrite ^/afisha/tickets/events/1854/   https://$host/afisha/event/750257/     permanent;
+  rewrite ^/afisha/tickets/events/1914/   https://$host/afisha/event/905257/     permanent;
+  rewrite ^/afisha/tickets/events/1915/   https://$host/afisha/event/519257/     permanent;
+  rewrite ^/afisha/tickets/events/1917/   https://$host/afisha/event/449257/     permanent;
+  rewrite ^/afisha/tickets/events/1921/   https://$host/afisha/event/492257/     permanent;
+  rewrite ^/afisha/tickets/events/1950/   https://$host/afisha/event/425257/     permanent;
+  rewrite ^/afisha/tickets/events/1963/   https://$host/afisha/event/382257/     permanent;
+  rewrite ^/afisha/tickets/events/2013/   https://$host/afisha/event/733257/     permanent;
+  rewrite ^/afisha/tickets/events/2016/   https://$host/afisha/event/584257/     permanent;
+  rewrite ^/afisha/tickets/events/2079/   https://$host/afisha/event/458257/     permanent;
+  rewrite ^/afisha/tickets/events/2089/   https://$host/afisha/event/883257/     permanent;
+  rewrite ^/afisha/tickets/events/2107/   https://$host/afisha/event/597257/     permanent;
+  rewrite ^/afisha/tickets/events/2111/   https://$host/afisha/event/490257/     permanent;
+  rewrite ^/afisha/tickets/events/2135/   https://$host/afisha/event/815257/     permanent;
+  rewrite ^/afisha/tickets/events/2187/   https://$host/afisha/event/2988257/    permanent;
+  rewrite ^/afisha/tickets/events/2200/   https://$host/afisha/event/602257/     permanent;
+  rewrite ^/afisha/tickets/events/2213/   https://$host/afisha/event/461257/     permanent;
+  rewrite ^/afisha/tickets/events/2215/   https://$host/afisha/event/463257/     permanent;
+  rewrite ^/afisha/tickets/events/2216/   https://$host/afisha/event/462257/     permanent;
+  rewrite ^/afisha/tickets/events/2218/   https://$host/afisha/event/459257/     permanent;
+  rewrite ^/afisha/tickets/events/2219/   https://$host/afisha/event/594257/     permanent;
+  rewrite ^/afisha/tickets/events/2231/   https://$host/afisha/event/21625257/   permanent;
+  rewrite ^/afisha/tickets/events/2267/   https://$host/afisha/event/776257/     permanent;
+  rewrite ^/afisha/tickets/events/2320/   https://$host/afisha/event/65868257/   permanent;
+  rewrite ^/afisha/tickets/events/2321/   https://$host/afisha/event/21517257/   permanent;
+  rewrite ^/afisha/tickets/events/2334/   https://$host/afisha/event/772257/     permanent;
+  rewrite ^/afisha/tickets/events/2345/   https://$host/afisha/event/526257/     permanent;
+  rewrite ^/afisha/tickets/events/2358/   https://$host/afisha/event/417257/     permanent;
+  rewrite ^/afisha/tickets/events/2359/   https://$host/afisha/event/415257/     permanent;
+  rewrite ^/afisha/tickets/events/2361/   https://$host/afisha/event/418257/     permanent;
+  rewrite ^/afisha/tickets/events/2362/   https://$host/afisha/event/446257/     permanent;
+  rewrite ^/afisha/tickets/events/2363/   https://$host/afisha/event/876257/     permanent;
+  rewrite ^/afisha/tickets/events/2370/   https://$host/afisha/event/421257/     permanent;
+  rewrite ^/afisha/tickets/events/2373/   https://$host/afisha/event/739257/     permanent;
+  rewrite ^/afisha/tickets/events/2374/   https://$host/afisha/event/698257/     permanent;
+  rewrite ^/afisha/tickets/events/2376/   https://$host/afisha/event/701257/     permanent;
+  rewrite ^/afisha/tickets/events/2377/   https://$host/afisha/event/405257/     permanent;
+  rewrite ^/afisha/tickets/events/2380/   https://$host/afisha/event/738257/     permanent;
+  rewrite ^/afisha/tickets/events/2381/   https://$host/afisha/event/56692257/   permanent;
+  rewrite ^/afisha/tickets/events/2382/   https://$host/afisha/event/436257/     permanent;
+  rewrite ^/afisha/tickets/events/2385/   https://$host/afisha/event/412257/     permanent;
+  rewrite ^/afisha/tickets/events/2386/   https://$host/afisha/event/339257/     permanent;
+  rewrite ^/afisha/tickets/events/2387/   https://$host/afisha/event/576257/     permanent;
+  rewrite ^/afisha/tickets/events/2388/   https://$host/afisha/event/928257/     permanent;
+  rewrite ^/afisha/tickets/events/2391/   https://$host/afisha/event/411257/     permanent;
+  rewrite ^/afisha/tickets/events/2392/   https://$host/afisha/event/596257/     permanent;
+  rewrite ^/afisha/tickets/events/2400/   https://$host/afisha/event/440257/     permanent;
+  rewrite ^/afisha/tickets/events/2404/   https://$host/afisha/event/951257/     permanent;
+  rewrite ^/afisha/tickets/events/2406/   https://$host/afisha/event/953257/     permanent;
+  rewrite ^/afisha/tickets/events/2416/   https://$host/afisha/event/439257/     permanent;
+  rewrite ^/afisha/tickets/events/2422/   https://$host/afisha/event/434257/     permanent;
+  rewrite ^/afisha/tickets/events/2473/   https://$host/afisha/event/622257/     permanent;
+  rewrite ^/afisha/tickets/events/2474/   https://$host/afisha/event/623257/     permanent;
+  rewrite ^/afisha/tickets/events/2475/   https://$host/afisha/event/685257/     permanent;
+  rewrite ^/afisha/tickets/events/2476/   https://$host/afisha/event/491257/     permanent;
+  rewrite ^/afisha/tickets/events/2478/   https://$host/afisha/event/549257/     permanent;
+  rewrite ^/afisha/tickets/events/2479/   https://$host/afisha/event/861257/     permanent;
+  rewrite ^/afisha/tickets/events/2480/   https://$host/afisha/event/616257/     permanent;
+  rewrite ^/afisha/tickets/events/2483/   https://$host/afisha/event/437257/     permanent;
+  rewrite ^/afisha/tickets/events/2484/   https://$host/afisha/event/438257/     permanent;
+  rewrite ^/afisha/tickets/events/2488/   https://$host/afisha/event/860257/     permanent;
+  rewrite ^/afisha/tickets/events/2489/   https://$host/afisha/event/512257/     permanent;
+  rewrite ^/afisha/tickets/events/2490/   https://$host/afisha/event/493257/     permanent;
+  rewrite ^/afisha/tickets/events/2491/   https://$host/afisha/event/513257/     permanent;
+  rewrite ^/afisha/tickets/events/2492/   https://$host/afisha/event/821257/     permanent;
+  rewrite ^/afisha/tickets/events/2494/   https://$host/afisha/event/547257/     permanent;
+  rewrite ^/afisha/tickets/events/2507/   https://$host/afisha/event/662257/     permanent;
+  rewrite ^/afisha/tickets/events/2529/   https://$host/afisha/event/697257/     permanent;
+  rewrite ^/afisha/tickets/events/2533/   https://$host/afisha/event/475257/     permanent;
+  rewrite ^/afisha/tickets/events/2541/   https://$host/afisha/event/2973257/    permanent;
+  rewrite ^/afisha/tickets/events/2606/   https://$host/afisha/event/65869257/   permanent;
+  rewrite ^/afisha/tickets/events/2632/   https://$host/afisha/event/898257/     permanent;
+  rewrite ^/afisha/tickets/events/2663/   https://$host/afisha/event/948257/     permanent;
+  rewrite ^/afisha/tickets/events/2715/   https://$host/afisha/event/818257/     permanent;
+  rewrite ^/afisha/tickets/events/2793/   https://$host/afisha/event/62740257/   permanent;
+  rewrite ^/afisha/tickets/events/2802/   https://$host/afisha/event/62701257/   permanent;
+  rewrite ^/afisha/tickets/events/2847/   https://$host/afisha/event/56675257/   permanent;
+  rewrite ^/afisha/tickets/events/2848/   https://$host/afisha/event/56680257/   permanent;
+  rewrite ^/afisha/tickets/events/2860/   https://$host/afisha/event/460257/     permanent;
+  rewrite ^/afisha/tickets/events/2946/   https://$host/afisha/event/862257/     permanent;
+  rewrite ^/afisha/tickets/events/2954/   https://$host/afisha/event/430257/     permanent;
+  rewrite ^/afisha/tickets/events/3147/   https://$host/afisha/event/538257/     permanent;
+  rewrite ^/afisha/tickets/events/3153/   https://$host/afisha/event/341257/     permanent;
+  rewrite ^/afisha/tickets/events/3204/   https://$host/afisha/event/700257/     permanent;
+  rewrite ^/afisha/tickets/events/3247/   https://$host/afisha/event/342257/     permanent;
+  rewrite ^/afisha/tickets/events/3409/   https://$host/afisha/event/794257/     permanent;
+  rewrite ^/afisha/tickets/events/3412/   https://$host/afisha/event/568257/     permanent;
+  rewrite ^/afisha/tickets/events/3795/   https://$host/afisha/event/552257/     permanent;
+  rewrite ^/afisha/tickets/events/3821/   https://$host/afisha/event/570257/     permanent;
+  rewrite ^/afisha/tickets/events/3842/   https://$host/afisha/event/522257/     permanent;
+  rewrite ^/afisha/tickets/events/3886/   https://$host/afisha/event/696257/     permanent;
+  rewrite ^/afisha/tickets/events/4049/   https://$host/afisha/event/15664257/   permanent;
+  rewrite ^/afisha/tickets/events/4140/   https://$host/afisha/event/589257/     permanent;
+  rewrite ^/afisha/tickets/events/4147/   https://$host/afisha/event/580257/     permanent;
+  rewrite ^/afisha/tickets/events/4154/   https://$host/afisha/event/508257/     permanent;
+  rewrite ^/afisha/tickets/events/4177/   https://$host/afisha/event/780257/     permanent;
+  rewrite ^/afisha/tickets/events/4178/   https://$host/afisha/event/789257/     permanent;
+  rewrite ^/afisha/tickets/events/4179/   https://$host/afisha/event/783257/     permanent;
+  rewrite ^/afisha/tickets/events/4180/   https://$host/afisha/event/782257/     permanent;
+  rewrite ^/afisha/tickets/events/4284/   https://$host/afisha/event/254257/     permanent;
+  rewrite ^/afisha/tickets/events/4310/   https://$host/afisha/event/683257/     permanent;
+  rewrite ^/afisha/tickets/events/4313/   https://$host/afisha/event/600257/     permanent;
+  rewrite ^/afisha/tickets/events/4314/   https://$host/afisha/event/556257/     permanent;
+  rewrite ^/afisha/tickets/events/4315/   https://$host/afisha/event/689257/     permanent;
+  rewrite ^/afisha/tickets/events/4336/   https://$host/afisha/event/586257/     permanent;
+  rewrite ^/afisha/tickets/events/4344/   https://$host/afisha/event/786257/     permanent;
+  rewrite ^/afisha/tickets/events/4354/   https://$host/afisha/event/544257/     permanent;
+  rewrite ^/afisha/tickets/events/4365/   https://$host/afisha/event/788257/     permanent;
+  rewrite ^/afisha/tickets/events/4367/   https://$host/afisha/event/755257/     permanent;
+  rewrite ^/afisha/tickets/events/4370/   https://$host/afisha/event/721257/     permanent;
+  rewrite ^/afisha/tickets/events/4388/   https://$host/afisha/event/785257/     permanent;
+  rewrite ^/afisha/tickets/events/4421/   https://$host/afisha/event/829257/     permanent;
+  rewrite ^/afisha/tickets/events/4425/   https://$host/afisha/event/868257/     permanent;
+  rewrite ^/afisha/tickets/events/4426/   https://$host/afisha/event/404257/     permanent;
+  rewrite ^/afisha/tickets/events/4437/   https://$host/afisha/event/345257/     permanent;
+  rewrite ^/afisha/tickets/events/4441/   https://$host/afisha/event/62672257/   permanent;
+  rewrite ^/afisha/tickets/events/4446/   https://$host/afisha/event/765257/     permanent;
+  rewrite ^/afisha/tickets/events/4447/   https://$host/afisha/event/380257/     permanent;
+  rewrite ^/afisha/tickets/events/4480/   https://$host/afisha/event/664257/     permanent;
+  rewrite ^/afisha/tickets/events/4481/   https://$host/afisha/event/453257/     permanent;
+  rewrite ^/afisha/tickets/events/4502/   https://$host/afisha/event/485257/     permanent;
+  rewrite ^/afisha/tickets/events/4514/   https://$host/afisha/event/2983257/    permanent;
+  rewrite ^/afisha/tickets/events/4521/   https://$host/afisha/event/722257/     permanent;
+  rewrite ^/afisha/tickets/events/4534/   https://$host/afisha/event/863257/     permanent;
+  rewrite ^/afisha/tickets/events/4543/   https://$host/afisha/event/720257/     permanent;
+  rewrite ^/afisha/tickets/events/4548/   https://$host/afisha/event/678257/     permanent;
+  rewrite ^/afisha/tickets/events/4590/   https://$host/afisha/event/595257/     permanent;
+  rewrite ^/afisha/tickets/events/4616/   https://$host/afisha/event/942257/     permanent;
+  rewrite ^/afisha/tickets/events/4631/   https://$host/afisha/event/820257/     permanent;
+  rewrite ^/afisha/tickets/events/4685/   https://$host/afisha/event/892257/     permanent;
+  rewrite ^/afisha/tickets/events/4687/   https://$host/afisha/event/611257/     permanent;
+  rewrite ^/afisha/tickets/events/4793/   https://$host/afisha/event/554257/     permanent;
+  rewrite ^/afisha/tickets/events/4813/   https://$host/afisha/event/875257/     permanent;
+  rewrite ^/afisha/tickets/events/4835/   https://$host/afisha/event/555257/     permanent;
+  rewrite ^/afisha/tickets/events/4849/   https://$host/afisha/event/630257/     permanent;
+  rewrite ^/afisha/tickets/events/4875/   https://$host/afisha/event/728257/     permanent;
+  rewrite ^/afisha/tickets/events/4890/   https://$host/afisha/event/667257/     permanent;
+  rewrite ^/afisha/tickets/events/4909/   https://$host/afisha/event/533257/     permanent;
+  rewrite ^/afisha/tickets/events/4920/   https://$host/afisha/event/17099257/   permanent;
+  rewrite ^/afisha/tickets/events/4924/   https://$host/afisha/event/911257/     permanent;
+  rewrite ^/afisha/tickets/events/4925/   https://$host/afisha/event/834257/     permanent;
+  rewrite ^/afisha/tickets/events/4944/   https://$host/afisha/event/895257/     permanent;
+  rewrite ^/afisha/tickets/events/4950/   https://$host/afisha/event/336257/     permanent;
+  rewrite ^/afisha/tickets/events/4964/   https://$host/afisha/event/914257/     permanent;
+  rewrite ^/afisha/tickets/events/4979/   https://$host/afisha/event/761257/     permanent;
+  rewrite ^/afisha/tickets/events/4981/   https://$host/afisha/event/762257/     permanent;
+  rewrite ^/afisha/tickets/events/4982/   https://$host/afisha/event/763257/     permanent;
+  rewrite ^/afisha/tickets/events/5012/   https://$host/afisha/event/318257/     permanent;
+  rewrite ^/afisha/tickets/events/5060/   https://$host/afisha/event/725257/     permanent;
+  rewrite ^/afisha/tickets/events/5061/   https://$host/afisha/event/369257/     permanent;
+  rewrite ^/afisha/tickets/events/5063/   https://$host/afisha/event/587257/     permanent;
+  rewrite ^/afisha/tickets/events/5064/   https://$host/afisha/event/890257/     permanent;
+  rewrite ^/afisha/tickets/events/5065/   https://$host/afisha/event/843257/     permanent;
+  rewrite ^/afisha/tickets/events/5068/   https://$host/afisha/event/585257/     permanent;
+  rewrite ^/afisha/tickets/events/5071/   https://$host/afisha/event/729257/     permanent;
+  rewrite ^/afisha/tickets/events/5079/   https://$host/afisha/event/16309257/   permanent;
+  rewrite ^/afisha/tickets/events/5091/   https://$host/afisha/event/551257/     permanent;
+  rewrite ^/afisha/tickets/events/5104/   https://$host/afisha/event/835257/     permanent;
+  rewrite ^/afisha/tickets/events/5105/   https://$host/afisha/event/734257/     permanent;
+  rewrite ^/afisha/tickets/events/5106/   https://$host/afisha/event/403257/     permanent;
+  rewrite ^/afisha/tickets/events/5115/   https://$host/afisha/event/394257/     permanent;
+  rewrite ^/afisha/tickets/events/5130/   https://$host/afisha/event/758257/     permanent;
+  rewrite ^/afisha/tickets/events/5154/   https://$host/afisha/event/666257/     permanent;
+  rewrite ^/afisha/tickets/events/5155/   https://$host/afisha/event/516257/     permanent;
+  rewrite ^/afisha/tickets/events/5156/   https://$host/afisha/event/591257/     permanent;
+  rewrite ^/afisha/tickets/events/5163/   https://$host/afisha/event/2115257/    permanent;
+  rewrite ^/afisha/tickets/events/5164/   https://$host/afisha/event/17024257/   permanent;
+  rewrite ^/afisha/tickets/events/5165/   https://$host/afisha/event/17031257/   permanent;
+  rewrite ^/afisha/tickets/events/5170/   https://$host/afisha/event/675257/     permanent;
+  rewrite ^/afisha/tickets/events/5173/   https://$host/afisha/event/619257/     permanent;
+  rewrite ^/afisha/tickets/events/5203/   https://$host/afisha/event/329257/     permanent;
+  rewrite ^/afisha/tickets/events/5204/   https://$host/afisha/event/2704257/    permanent;
+  rewrite ^/afisha/tickets/events/5207/   https://$host/afisha/event/390257/     permanent;
+  rewrite ^/afisha/tickets/events/5211/   https://$host/afisha/event/17080257/   permanent;
+  rewrite ^/afisha/tickets/events/5213/   https://$host/afisha/event/17096257/   permanent;
+  rewrite ^/afisha/tickets/events/5215/   https://$host/afisha/event/17097257/   permanent;
+  rewrite ^/afisha/tickets/events/5222/   https://$host/afisha/event/904257/     permanent;
+  rewrite ^/afisha/tickets/events/5226/   https://$host/afisha/event/56689257/   permanent;
+  rewrite ^/afisha/tickets/events/5242/   https://$host/afisha/event/398257/     permanent;
+  rewrite ^/afisha/tickets/events/5286/   https://$host/afisha/event/709257/     permanent;
+  rewrite ^/afisha/tickets/events/5318/   https://$host/afisha/event/480257/     permanent;
+  rewrite ^/afisha/tickets/events/5320/   https://$host/afisha/event/661257/     permanent;
+  rewrite ^/afisha/tickets/events/5323/   https://$host/afisha/event/532257/     permanent;
+  rewrite ^/afisha/tickets/events/5328/   https://$host/afisha/event/660257/     permanent;
+  rewrite ^/afisha/tickets/events/5340/   https://$host/afisha/event/934257/     permanent;
+  rewrite ^/afisha/tickets/events/5362/   https://$host/afisha/event/677257/     permanent;
+  rewrite ^/afisha/tickets/events/5379/   https://$host/afisha/event/583257/     permanent;
+  rewrite ^/afisha/tickets/events/5397/   https://$host/afisha/event/796257/     permanent;
+  rewrite ^/afisha/tickets/events/5404/   https://$host/afisha/event/572257/     permanent;
+  rewrite ^/afisha/tickets/events/5406/   https://$host/afisha/event/581257/     permanent;
+  rewrite ^/afisha/tickets/events/5408/   https://$host/afisha/event/582257/     permanent;
+  rewrite ^/afisha/tickets/events/5414/   https://$host/afisha/event/573257/     permanent;
+  rewrite ^/afisha/tickets/events/5420/   https://$host/afisha/event/817257/     permanent;
+  rewrite ^/afisha/tickets/events/5421/   https://$host/afisha/event/747257/     permanent;
+  rewrite ^/afisha/tickets/events/5422/   https://$host/afisha/event/769257/     permanent;
+  rewrite ^/afisha/tickets/events/5423/   https://$host/afisha/event/3937257/    permanent;
+  rewrite ^/afisha/tickets/events/5426/   https://$host/afisha/event/601257/     permanent;
+  rewrite ^/afisha/tickets/events/5427/   https://$host/afisha/event/684257/     permanent;
+  rewrite ^/afisha/tickets/events/5428/   https://$host/afisha/event/465257/     permanent;
+  rewrite ^/afisha/tickets/events/5429/   https://$host/afisha/event/612257/     permanent;
+  rewrite ^/afisha/tickets/events/5430/   https://$host/afisha/event/335257/     permanent;
+  rewrite ^/afisha/tickets/events/5431/   https://$host/afisha/event/727257/     permanent;
+  rewrite ^/afisha/tickets/events/5435/   https://$host/afisha/event/724257/     permanent;
+  rewrite ^/afisha/tickets/events/5444/   https://$host/afisha/event/801257/     permanent;
+  rewrite ^/afisha/tickets/events/5446/   https://$host/afisha/event/501257/     permanent;
+  rewrite ^/afisha/tickets/events/5456/   https://$host/afisha/event/559257/     permanent;
+  rewrite ^/afisha/tickets/events/5474/   https://$host/afisha/event/663257/     permanent;
+  rewrite ^/afisha/tickets/events/5475/   https://$host/afisha/event/920257/     permanent;
+  rewrite ^/afisha/tickets/events/5476/   https://$host/afisha/event/489257/     permanent;
+  rewrite ^/afisha/tickets/events/5478/   https://$host/afisha/event/922257/     permanent;
+  rewrite ^/afisha/tickets/events/5479/   https://$host/afisha/event/923257/     permanent;
+  rewrite ^/afisha/tickets/events/5480/   https://$host/afisha/event/924257/     permanent;
+  rewrite ^/afisha/tickets/events/5481/   https://$host/afisha/event/925257/     permanent;
+  rewrite ^/afisha/tickets/events/5482/   https://$host/afisha/event/926257/     permanent;
+  rewrite ^/afisha/tickets/events/5488/   https://$host/afisha/event/699257/     permanent;
+  rewrite ^/afisha/tickets/events/5493/   https://$host/afisha/event/530257/     permanent;
+  rewrite ^/afisha/tickets/events/5497/   https://$host/afisha/event/37713257/   permanent;
+  rewrite ^/afisha/tickets/events/5509/   https://$host/afisha/event/751257/     permanent;
+  rewrite ^/afisha/tickets/events/5512/   https://$host/afisha/event/837257/     permanent;
+  rewrite ^/afisha/tickets/events/5517/   https://$host/afisha/event/546257/     permanent;
+  rewrite ^/afisha/tickets/events/5519/   https://$host/afisha/event/665257/     permanent;
+  rewrite ^/afisha/tickets/events/5522/   https://$host/afisha/event/907257/     permanent;
+  rewrite ^/afisha/tickets/events/5523/   https://$host/afisha/event/718257/     permanent;
+  rewrite ^/afisha/tickets/events/5524/   https://$host/afisha/event/719257/     permanent;
+  rewrite ^/afisha/tickets/events/5525/   https://$host/afisha/event/790257/     permanent;
+  rewrite ^/afisha/tickets/events/5531/   https://$host/afisha/event/567257/     permanent;
+  rewrite ^/afisha/tickets/events/5534/   https://$host/afisha/event/903257/     permanent;
+  rewrite ^/afisha/tickets/events/5539/   https://$host/afisha/event/707257/     permanent;
+  rewrite ^/afisha/tickets/events/5549/   https://$host/afisha/event/935257/     permanent;
+  rewrite ^/afisha/tickets/events/5551/   https://$host/afisha/event/808257/     permanent;
+  rewrite ^/afisha/tickets/events/5552/   https://$host/afisha/event/694257/     permanent;
+  rewrite ^/afisha/tickets/events/5554/   https://$host/afisha/event/840257/     permanent;
+  rewrite ^/afisha/tickets/events/5556/   https://$host/afisha/event/850257/     permanent;
+  rewrite ^/afisha/tickets/events/5559/   https://$host/afisha/event/841257/     permanent;
+  rewrite ^/afisha/tickets/events/5560/   https://$host/afisha/event/56693257/   permanent;
+  rewrite ^/afisha/tickets/events/5572/   https://$host/afisha/event/918257/     permanent;
+  rewrite ^/afisha/tickets/events/5579/   https://$host/afisha/event/715257/     permanent;
+  rewrite ^/afisha/tickets/events/5584/   https://$host/afisha/event/943257/     permanent;
+  rewrite ^/afisha/tickets/events/5587/   https://$host/afisha/event/687257/     permanent;
+  rewrite ^/afisha/tickets/events/5589/   https://$host/afisha/event/507257/     permanent;
+  rewrite ^/afisha/tickets/events/5590/   https://$host/afisha/event/542257/     permanent;
+  rewrite ^/afisha/tickets/events/5592/   https://$host/afisha/event/629257/     permanent;
+  rewrite ^/afisha/tickets/events/5596/   https://$host/afisha/event/471257/     permanent;
+  rewrite ^/afisha/tickets/events/5609/   https://$host/afisha/event/896257/     permanent;
+  rewrite ^/afisha/tickets/events/5610/   https://$host/afisha/event/897257/     permanent;
+  rewrite ^/afisha/tickets/events/5612/   https://$host/afisha/event/813257/     permanent;
+  rewrite ^/afisha/tickets/events/5613/   https://$host/afisha/event/518257/     permanent;
+  rewrite ^/afisha/tickets/events/5614/   https://$host/afisha/event/847257/     permanent;
+  rewrite ^/afisha/tickets/events/5615/   https://$host/afisha/event/717257/     permanent;
+  rewrite ^/afisha/tickets/events/5616/   https://$host/afisha/event/812257/     permanent;
+  rewrite ^/afisha/tickets/events/5617/   https://$host/afisha/event/814257/     permanent;
+  rewrite ^/afisha/tickets/events/5618/   https://$host/afisha/event/771257/     permanent;
+  rewrite ^/afisha/tickets/events/5620/   https://$host/afisha/event/749257/     permanent;
+  rewrite ^/afisha/tickets/events/5621/   https://$host/afisha/event/866257/     permanent;
+  rewrite ^/afisha/tickets/events/5624/   https://$host/afisha/event/277257/     permanent;
+  rewrite ^/afisha/tickets/events/5625/   https://$host/afisha/event/331257/     permanent;
+  rewrite ^/afisha/tickets/events/5633/   https://$host/afisha/event/746257/     permanent;
+  rewrite ^/afisha/tickets/events/5637/   https://$host/afisha/event/400257/     permanent;
+  rewrite ^/afisha/tickets/events/5638/   https://$host/afisha/event/562257/     permanent;
+  rewrite ^/afisha/tickets/events/5646/   https://$host/afisha/event/799257/     permanent;
+  rewrite ^/afisha/tickets/events/5647/   https://$host/afisha/event/535257/     permanent;
+  rewrite ^/afisha/tickets/events/5651/   https://$host/afisha/event/499257/     permanent;
+  rewrite ^/afisha/tickets/events/5654/   https://$host/afisha/event/753257/     permanent;
+  rewrite ^/afisha/tickets/events/5656/   https://$host/afisha/event/775257/     permanent;
+  rewrite ^/afisha/tickets/events/5659/   https://$host/afisha/event/819257/     permanent;
+  rewrite ^/afisha/tickets/events/5663/   https://$host/afisha/event/285257/     permanent;
+  rewrite ^/afisha/tickets/events/5667/   https://$host/afisha/event/682257/     permanent;
+  rewrite ^/afisha/tickets/events/5668/   https://$host/afisha/event/779257/     permanent;
+  rewrite ^/afisha/tickets/events/5669/   https://$host/afisha/event/598257/     permanent;
+  rewrite ^/afisha/tickets/events/5670/   https://$host/afisha/event/604257/     permanent;
+  rewrite ^/afisha/tickets/events/5671/   https://$host/afisha/event/816257/     permanent;
+  rewrite ^/afisha/tickets/events/5673/   https://$host/afisha/event/401257/     permanent;
+  rewrite ^/afisha/tickets/events/5674/   https://$host/afisha/event/792257/     permanent;
+  rewrite ^/afisha/tickets/events/5675/   https://$host/afisha/event/605257/     permanent;
+  rewrite ^/afisha/tickets/events/5676/   https://$host/afisha/event/287257/     permanent;
+  rewrite ^/afisha/tickets/events/5680/   https://$host/afisha/event/509257/     permanent;
+  rewrite ^/afisha/tickets/events/5681/   https://$host/afisha/event/2940257/    permanent;
+  rewrite ^/afisha/tickets/events/5682/   https://$host/afisha/event/15789257/   permanent;
+  rewrite ^/afisha/tickets/events/5683/   https://$host/afisha/event/838257/     permanent;
+  rewrite ^/afisha/tickets/events/5684/   https://$host/afisha/event/893257/     permanent;
+  rewrite ^/afisha/tickets/events/5685/   https://$host/afisha/event/939257/     permanent;
+  rewrite ^/afisha/tickets/events/5688/   https://$host/afisha/event/473257/     permanent;
+  rewrite ^/afisha/tickets/events/5689/   https://$host/afisha/event/2799257/    permanent;
+  rewrite ^/afisha/tickets/events/5690/   https://$host/afisha/event/468257/     permanent;
+  rewrite ^/afisha/tickets/events/5692/   https://$host/afisha/event/800257/     permanent;
+  rewrite ^/afisha/tickets/events/5693/   https://$host/afisha/event/2794257/    permanent;
+  rewrite ^/afisha/tickets/events/5694/   https://$host/afisha/event/938257/     permanent;
+  rewrite ^/afisha/tickets/events/5695/   https://$host/afisha/event/2793257/    permanent;
+  rewrite ^/afisha/tickets/events/5696/   https://$host/afisha/event/578257/     permanent;
+  rewrite ^/afisha/tickets/events/5700/   https://$host/afisha/event/251257/     permanent;
+  rewrite ^/afisha/tickets/events/5701/   https://$host/afisha/event/574257/     permanent;
+  rewrite ^/afisha/tickets/events/5703/   https://$host/afisha/event/937257/     permanent;
+  rewrite ^/afisha/tickets/events/5704/   https://$host/afisha/event/506257/     permanent;
+  rewrite ^/afisha/tickets/events/5706/   https://$host/afisha/event/811257/     permanent;
+  rewrite ^/afisha/tickets/events/5713/   https://$host/afisha/event/592257/     permanent;
+  rewrite ^/afisha/tickets/events/5714/   https://$host/afisha/event/590257/     permanent;
+  rewrite ^/afisha/tickets/events/5715/   https://$host/afisha/event/575257/     permanent;
+  rewrite ^/afisha/tickets/events/5722/   https://$host/afisha/event/625257/     permanent;
+  rewrite ^/afisha/tickets/events/5725/   https://$host/afisha/event/735257/     permanent;
+  rewrite ^/afisha/tickets/events/5726/   https://$host/afisha/event/706257/     permanent;
+  rewrite ^/afisha/tickets/events/5727/   https://$host/afisha/event/945257/     permanent;
+  rewrite ^/afisha/tickets/events/5728/   https://$host/afisha/event/543257/     permanent;
+  rewrite ^/afisha/tickets/events/5730/   https://$host/afisha/event/854257/     permanent;
+  rewrite ^/afisha/tickets/events/5731/   https://$host/afisha/event/714257/     permanent;
+  rewrite ^/afisha/tickets/events/5733/   https://$host/afisha/event/561257/     permanent;
+  rewrite ^/afisha/tickets/events/5734/   https://$host/afisha/event/614257/     permanent;
+  rewrite ^/afisha/tickets/events/5736/   https://$host/afisha/event/479257/     permanent;
+  rewrite ^/afisha/tickets/events/5737/   https://$host/afisha/event/450257/     permanent;
+  rewrite ^/afisha/tickets/events/5738/   https://$host/afisha/event/947257/     permanent;
+  rewrite ^/afisha/tickets/events/5739/   https://$host/afisha/event/986257/     permanent;
+  rewrite ^/afisha/tickets/events/5745/   https://$host/afisha/event/1186257/    permanent;
+  rewrite ^/afisha/tickets/events/5747/   https://$host/afisha/event/1307257/    permanent;
+  rewrite ^/afisha/tickets/events/5749/   https://$host/afisha/event/1726257/    permanent;
+  rewrite ^/afisha/tickets/events/5750/   https://$host/afisha/event/1740257/    permanent;
+  rewrite ^/afisha/tickets/events/5753/   https://$host/afisha/event/2693257/    permanent;
+  rewrite ^/afisha/tickets/events/5754/   https://$host/afisha/event/2679257/    permanent;
+  rewrite ^/afisha/tickets/events/5761/   https://$host/afisha/event/2752257/    permanent;
+  rewrite ^/afisha/tickets/venues/1/     https://$host/afisha/venues/145211/   permanent;
+  rewrite ^/afisha/tickets/venues/10/    https://$host/afisha/venues/130211/   permanent;
+  rewrite ^/afisha/tickets/venues/116/   https://$host/afisha/venues/232211/   permanent;
+  rewrite ^/afisha/tickets/venues/12/    https://$host/afisha/venues/190211/   permanent;
+  rewrite ^/afisha/tickets/venues/127/   https://$host/afisha/venues/201211/   permanent;
+  rewrite ^/afisha/tickets/venues/13/    https://$host/afisha/venues/148211/   permanent;
+  rewrite ^/afisha/tickets/venues/14/    https://$host/afisha/venues/223211/   permanent;
+  rewrite ^/afisha/tickets/venues/145/   https://$host/afisha/venues/6211/     permanent;
+  rewrite ^/afisha/tickets/venues/146/   https://$host/afisha/venues/262211/   permanent;
+  rewrite ^/afisha/tickets/venues/15/    https://$host/afisha/venues/2211/     permanent;
+  rewrite ^/afisha/tickets/venues/151/   https://$host/afisha/venues/16211/    permanent;
+  rewrite ^/afisha/tickets/venues/158/   https://$host/afisha/venues/174211/   permanent;
+  rewrite ^/afisha/tickets/venues/16/    https://$host/afisha/venues/191211/   permanent;
+  rewrite ^/afisha/tickets/venues/17/    https://$host/afisha/venues/147211/   permanent;
+  rewrite ^/afisha/tickets/venues/177/   https://$host/afisha/venues/203211/   permanent;
+  rewrite ^/afisha/tickets/venues/178/   https://$host/afisha/venues/225211/   permanent;
+  rewrite ^/afisha/tickets/venues/179/   https://$host/afisha/venues/228211/   permanent;
+  rewrite ^/afisha/tickets/venues/18/    https://$host/afisha/venues/192211/   permanent;
+  rewrite ^/afisha/tickets/venues/182/   https://$host/afisha/venues/1211/     permanent;
+  rewrite ^/afisha/tickets/venues/183/   https://$host/afisha/venues/45211/    permanent;
+  rewrite ^/afisha/tickets/venues/19/    https://$host/afisha/venues/193211/   permanent;
+  rewrite ^/afisha/tickets/venues/2/     https://$host/afisha/venues/179211/   permanent;
+  rewrite ^/afisha/tickets/venues/20/    https://$host/afisha/venues/266211/   permanent;
+  rewrite ^/afisha/tickets/venues/200/   https://$host/afisha/venues/79211/    permanent;
+  rewrite ^/afisha/tickets/venues/201/   https://$host/afisha/venues/40211/    permanent;
+  rewrite ^/afisha/tickets/venues/21/    https://$host/afisha/venues/188211/   permanent;
+  rewrite ^/afisha/tickets/venues/22/    https://$host/afisha/venues/243211/   permanent;
+  rewrite ^/afisha/tickets/venues/224/   https://$host/afisha/venues/128211/   permanent;
+  rewrite ^/afisha/tickets/venues/23/    https://$host/afisha/venues/194211/   permanent;
+  rewrite ^/afisha/tickets/venues/24/    https://$host/afisha/venues/195211/   permanent;
+  rewrite ^/afisha/tickets/venues/245/   https://$host/afisha/venues/204211/   permanent;
+  rewrite ^/afisha/tickets/venues/25/    https://$host/afisha/venues/134211/   permanent;
+  rewrite ^/afisha/tickets/venues/28/    https://$host/afisha/venues/46211/    permanent;
+  rewrite ^/afisha/tickets/venues/29/    https://$host/afisha/venues/196211/   permanent;
+  rewrite ^/afisha/tickets/venues/3/     https://$host/afisha/venues/126211/   permanent;
+  rewrite ^/afisha/tickets/venues/31/    https://$host/afisha/venues/25211/    permanent;
+  rewrite ^/afisha/tickets/venues/32/    https://$host/afisha/venues/122211/   permanent;
+  rewrite ^/afisha/tickets/venues/34/    https://$host/afisha/venues/183211/   permanent;
+  rewrite ^/afisha/tickets/venues/35/    https://$host/afisha/venues/144211/   permanent;
+  rewrite ^/afisha/tickets/venues/4/     https://$host/afisha/venues/129211/   permanent;
+  rewrite ^/afisha/tickets/venues/42/    https://$host/afisha/venues/43211/    permanent;
+  rewrite ^/afisha/tickets/venues/49/    https://$host/afisha/venues/24211/    permanent;
+  rewrite ^/afisha/tickets/venues/5/     https://$host/afisha/venues/200211/   permanent;
+  rewrite ^/afisha/tickets/venues/6/     https://$host/afisha/venues/131211/   permanent;
+  rewrite ^/afisha/tickets/venues/61/    https://$host/afisha/venues/197211/   permanent;
+  rewrite ^/afisha/tickets/venues/7/     https://$host/afisha/venues/75211/    permanent;
+  rewrite ^/afisha/tickets/venues/9/     https://$host/afisha/venues/199211/   permanent;
+  rewrite ^/afisha/tickets/events/4653/  https://$host/afisha/event/56681257/  permanent;
+  return 301 https://$host/afisha/;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /altmosprx/ {
+  access_log /app_logs/nginx/altmos.log json;
+  set $application_identifier "altmos";
+  include /etc/nginx/locations/error_pages.conf;
+  proxy_set_header Host $alt_host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_redirect https://$alt_host/ https://$host/;
+  proxy_pass https://alt_mos_ru;
+    location ^~ /altmosprx/api/1/feedback/questions_on_screen/ws {
+    proxy_redirect https://$alt_host/ https://$host/;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $alt_host;
+    proxy_set_header X-Real-Ip $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_buffering off;
+    proxy_pass https://alt_mos_ru;
+  }
+  server_tokens off;
+}
+
+location ^~ /api/moi-raion {
+  rewrite ^/api/moi-raion/(.*) https://$host/api/map/$1 permanent;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /api/moswidgets {
+  access_log /app_logs/nginx/moswidgets.log json;
+  set $application_identifier "moswidgets";
+  include /etc/nginx/locations/api_error_page.conf;
+  <% if @is_public %> auth_basic off; allow all;<% end %>
+  <% if @cors_enabled %>
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  <% else %>
+  add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+  add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+  add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials;
+  <% end %>
+  proxy_pass http://moswidgets;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /api/my/v1 {
+  access_log /app_logs/nginx/my-api.log json;
+  set $application_identifier "my-api";
+  include /etc/nginx/locations/api_error_page.conf;
+  <% if @cors_enabled %>
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  <% else %>
+  add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+  add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+  add_header 'Access-Control-Allow-Credentials' '$cors_api_allow_credentials';
+  <% end %>
+  proxy_hide_header "Cache-Control";
+  add_header 'Cache-Control' 'no-store' always;
+  proxy_redirect off;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_pass http://my-api;
+    location ~ ^/api/my/v([0-9]+)/notify {
+    <% if node['chefinit']['environment'] == 'production' %>
+    satisfy any;
+    allow 10.89.0.0/16;
+    allow 10.15.0.0/16;
+    allow 172.16.0.0/16;
+    allow 172.17.0.0/16;
+    auth_basic_user_file /app_data/nginx/htpasswd/my_notifier;
+    auth_basic "closed site";
+    <% end %>
+    access_log /app_logs/nginx/my-notifier.log json;
+    set $application_identifier "my-notifier";
+    include /etc/nginx/locations/api_error_page.conf;
+    <% if @cors_enabled %>
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    <% else %>
+    add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+    add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+    add_header 'Access-Control-Allow-Credentials' '$cors_api_allow_credentials';
+    <% end %>
+    proxy_hide_header "Cache-Control";
+    add_header 'Cache-Control' 'no-store' always;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://kubernetes;
+  }
+  server_tokens off;
+}
+
+location ^~ /apple-touch-icon {
+    location ~* ^/apple-touch-icon.+76x76.+png$ {
+    rewrite ^/(.*) /static/images/favicon/icon76x76.png last;
+  }
+    location ~* ^/apple-touch-icon.+152x152.+png$ {
+    rewrite ^/(.*) /static/images/favicon/icon152x152.png last;
+  }
+  rewrite ^/(.*) /static/images/favicon/icon120x120.png last;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /bitrix/ {
+  access_log /app_logs/nginx/bitrix.log json;
+  set $application_identifier "bitrix";
+  include /etc/nginx/locations/error_pages.conf;
+  proxy_pass http://bitrix;
+    location ~* ^/bitrix/admin {
+    access_log /app_logs/nginx/bitrix.log json;
+    set $application_identifier "bitrix";
+      if ($deny_bitrix_admin) {
+      return 403;
+    }
+    proxy_pass http://bitrix;
+  }
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /covid-19-dashboard {
+    location = /covid-19-dashboard/ {
+    include /etc/nginx/locations/error_pages.conf;
+    return 404;
+  }
+    location ~* ^/covid-19-dashboard/.+\.html$ {
+    access_log /app_logs/nginx/covid-19-dashboard.log json;
+    set $application_identifier "covid-19-dashboard";
+    include /etc/nginx/locations/api_error_page.conf;
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    auth_basic "closed site";
+    auth_basic_user_file /app_data/nginx/htpasswd/covid_dashboard;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://covid-19-dashboard;
+  }
+  access_log /app_logs/nginx/covid-19-dashboard.log json;
+  set $application_identifier "covid-19-dashboard";
+  include /etc/nginx/locations/api_error_page.conf;
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  proxy_redirect off;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_pass http://covid-19-dashboard;
+  server_tokens off;
+}
+
+location ^~ /covid-19-data/api/(world|subjects) {
+  access_log /app_logs/nginx/covid-19-data.log json;
+  set $application_identifier "covid-19-data";
+  include /etc/nginx/locations/api_error_page.conf;
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  add_header "Access-Control-Allow-Headers" "Accept, Content-Type, Origin, Referer, User-Agent, X-API-Key";
+    if ($request_method = OPTIONS ) {
+    return 204;
+  }
+  <% case node['chefinit']['ring'] %>
+  <% when 'p' %>
+  set $allow_request YES;
+    if ($http_x_api_key != '7a04f8f0-12de-11eb-adc1-0242ac120002') {
+    set $allow_request N;
+  }
+    if ($cookie_COVID19_PROD_CIRCUIT = '') {
+      set $allow_request "${allow_request}O";
+    }
+      if ($http_x_forwarded_for != '185.173.3.69') {
+        set $allow_request "${allow_request}O";
+      }
+        if ($http_x_forwarded_for != '176.9.215.34') {
+          set $allow_request "${allow_request}O";
+        }
+          if ($allow_request = NOOO) {
+          return 403;
+        }
+        <% end %>
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_cache covid-19-data-dynamic;
+        proxy_cache_key $uri$request_body;
+        proxy_cache_revalidate on;
+        proxy_cache_lock on;
+        proxy_cache_bypass 0;
+        proxy_no_cache 0;
+        proxy_cache_valid 200 1m;
+        proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
+        add_header X-Cache-Status $upstream_cache_status;
+        proxy_pass http://covid-19-data;
+      }
+        location ^~ /covid-19-data {
+        <% case node['chefinit']['ring'] %>
+        <% when 'p' %>
+          location ~* /excel/ {
+          access_log /app_logs/nginx/covid-19-data.log json;
+          set $application_identifier "covid-19-data";
+          include /etc/nginx/locations/api_error_page.conf;
+          add_header 'Access-Control-Allow-Origin' '*';
+          add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+          add_header "Access-Control-Allow-Headers" "Accept, Content-Type, Origin, Referer, User-Agent, X-API-Key";
+            if ($request_method = OPTIONS ) {
+            return 204;
+          }
+          set $allow_request YES;
+            if ($cookie_COVID19_PROD_CIRCUIT = '') {
+            set $allow_request N;
+          }
+            if ($http_referer !~* 'xn--h1ae9a.xn--p1ai') {
+              set $allow_request "${allow_request}O";
+            }
+              if ($http_referer !~* 'www.mos.ru/covid-19') {
+                set $allow_request "${allow_request}O";
+              }
+                if ($allow_request = NOO) {
+                return 403;
+              }
+              proxy_redirect off;
+              proxy_set_header Host $covid19_data_host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_pass $covid19_data_scheme://$covid19_data_upstream;
+            }
+            <% end %>
+            access_log /app_logs/nginx/covid-19-data.log json;
+            set $application_identifier "covid-19-data";
+            include /etc/nginx/locations/api_error_page.conf;
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+            add_header "Access-Control-Allow-Headers" "Accept, Content-Type, Origin, Referer, User-Agent, X-API-Key";
+              if ($request_method = OPTIONS ) {
+              return 204;
+            }
+            <% case node['chefinit']['ring'] %>
+            <% when 'p' %>
+            set $allow_request YES;
+              if ($http_x_api_key != '7a04f8f0-12de-11eb-adc1-0242ac120002') {
+              set $allow_request N;
+            }
+              if ($cookie_COVID19_PROD_CIRCUIT = '') {
+                set $allow_request "${allow_request}O";
+              }
+                if ($http_x_forwarded_for != '185.173.3.69') {
+                  set $allow_request "${allow_request}O";
+                }
+                  if ($http_x_forwarded_for != '176.9.215.34') {
+                    set $allow_request "${allow_request}O";
+                  }
+                    if ($allow_request = NOOO) {
+                    return 403;
+                  }
+                  <% end %>
+                  proxy_redirect off;
+                  proxy_set_header Host $covid19_data_host;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  proxy_pass $covid19_data_scheme://$covid19_data_upstream;
+                }
+                  location ^~ /covid-19-data/admin {
+                  access_log /app_logs/nginx/covid-19-data.log json;
+                  set $application_identifier "covid-19-data";
+                  include /etc/nginx/locations/api_error_page.conf;
+                  auth_basic "closed site";
+                  auth_basic_user_file /app_data/nginx/htpasswd/covid_admin;
+                  proxy_redirect off;
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  proxy_pass http://covid-19-data;
+                }
+                server_tokens off;
+}
+
+location ^~ /covid-19-widgets {
+    location = /covid-19-widgets/ {
+    include /etc/nginx/locations/error_pages.conf;
+    return 404;
+  }
+    location ~* ^/covid-19-widgets/.+\.html$ {
+    access_log /app_logs/nginx/covid-19-widgets.log json;
+    set $application_identifier "covid-19-widgets";
+    include /etc/nginx/locations/api_error_page.conf;
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    auth_basic "closed site";
+    auth_basic_user_file /app_data/nginx/htpasswd/covid_dashboard;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://covid-19-widgets;
+  }
+  access_log /app_logs/nginx/covid-19-widgets.log json;
+  set $application_identifier "covid-19-widgets";
+  include /etc/nginx/locations/api_error_page.conf;
+  add_header 'Access-Control-Allow-Origin' '*';
+  add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+  proxy_redirect off;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_pass http://covid-19-widgets;
+  server_tokens off;
+}
+
+location ^~ /otvet- {
+    location ~* ^/otvet-.*$ {
+    access_log /app_logs/nginx/instructions-app.log json;
+    set $application_identifier "instructions-app";
+    include /etc/nginx/locations/error_pages.conf;
+    include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+    proxy_hide_header X-Powered-By;
+    server_tokens off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://instructions-app;
+  }
+  proxy_redirect off;
+}
+
+location ^~ /rss/ {
+  rewrite ^/rss/(.*)$  /api/aggregation/v1/frontend/rss/ru/$1  last;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /rss/yandex/oiv/ {
+  rewrite ^/rss/yandex/oiv/(.*)$  /api/newsfeed/v4/frontend/rss/ru/yandex/oiv/$1  last;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /ru/ {
+  rewrite ^/ru/(.*) https://$host/$1  permanent;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /services/ {
+  rewrite ^/services/catalog/cat/29532/item/36532/611533/     https://$host/uslugi/transport/propuska/1797/                                                          permanent;
+  rewrite ^/services/catalog/cat/29532/item/31532/614533/     https://$host/uslugi/transport/parkovka/1760/                                                          permanent;
+  rewrite ^/services/catalog/cat/29532/item/31532/618533/     https://$host/uslugi/transport/                                                                        permanent;
+  rewrite ^/services/catalog/cat/29532/item/31532/622533/     https://$host/uslugi/transport/parkovka/1761/                                                          permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/627533/     https://$host/uslugi/dokumenty/dokumenty-zags/1889/                                                    permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/633533/     https://$host/uslugi/dokumenty/dokumenty-zags/1892/                                                    permanent;
+  rewrite ^/services/catalog/cat/118532/item/123532/640533/   https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/obekty-kulturnogo-naslediya/                 permanent;
+  rewrite ^/services/catalog/cat/49532/item/51532/644533/     https://$host/uslugi/semya-deti/siroty-i-usynoviteli-opekuny-priemnye-roditeli/2122/2135/              permanent;
+  rewrite ^/services/catalog/cat/67532/item/69532/648533/     https://$host/uslugi/kultura-sport-otdyh/otdyh/1837/                                                   permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/653533/     https://$host/uslugi/dokumenty/dokumenty-zags/1887/                                                    permanent;
+  rewrite ^/services/catalog/cat/118532/item/125532/661533/   https://$host/biznes/prirodopolzovanie-i-ekologiya/voda/1220/                                          permanent;
+  rewrite ^/services/catalog/cat/118532/item/130532/673533/   https://$host/biznes/transport-i-attrakciony/populyarnoe-v-razdele/1497/                               permanent;
+  rewrite ^/services/catalog/cat/54532/item/55532/685533/     https://$host/uslugi/socialnaya-podderzhka/karty-moskvicha-i-dokumenty-dayuschie-pravo-na-lgoty/1384/  permanent;
+  rewrite ^/services/catalog/cat/29532/item/33532/690533/     https://$host/uslugi/transport/samohodnaya-tehnika/1791/                                               permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/691533/   https://$host/biznes/licenzii-i-razresheniya/razresheniya-i-akkreditaciya/1141/                        permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/697533/     https://$host/uslugi/dokumenty/dokumenty-zags/1890/                                                    permanent;
+  rewrite ^/services/catalog/cat/49532/item/50532/700533/     https://$host/uslugi/semya-deti/brak/2082/                                                             permanent;
+  rewrite ^/services/catalog/cat/29532/item/33532/713533/     https://$host/uslugi/transport/samohodnaya-tehnika/1793/                                               permanent;
+  rewrite ^/services/catalog/cat/49532/item/51532/724533/     https://$host/uslugi/semya-deti/siroty-i-usynoviteli-opekuny-priemnye-roditeli/2122/2127/              permanent;
+  rewrite ^/services/catalog/cat/54532/item/62532/764533/     https://$host/uslugi/socialnaya-podderzhka/bezrabotnym/1472/1479/                                      permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/770533/     https://$host/uslugi/dokumenty/dokumenty-zags/1888/                                                    permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/773533/   https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/1139/                                      permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/780533/   https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/1134/                                      permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/787533/   https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/1137/                                      permanent;
+  rewrite ^/services/catalog/cat/118532/item/128532/794533/   https://$host/biznes/reklama-torgovlya-i-obschepit/populyarnoe-v-razdele/1470/                         permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/802533/   https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/1136/                                      permanent;
+  rewrite ^/services/catalog/cat/54532/item/60532/811533/     https://$host/uslugi/socialnaya-podderzhka/pensioneram/1523/                                           permanent;
+  rewrite ^/services/catalog/cat/118532/item/124532/877533/   https://$host/biznes/prirodopolzovanie-i-ekologiya/osobo-ohranyaemye-territorii/1231/                  permanent;
+  rewrite ^/services/catalog/cat/118532/item/130532/923533/   https://$host/biznes/transport-i-attrakciony/organizaciya-karsheringa/1213/                            permanent;
+  rewrite ^/services/catalog/cat/118532/item/123532/927533/   https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/obekty-kulturnogo-naslediya/                 permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/931533/   https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/1140/                                      permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/937533/   https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/1135/                                      permanent;
+  rewrite ^/services/catalog/cat/54532/item/63532/947533/     https://$host/uslugi/socialnaya-podderzhka/voennosluzhaschim-i-ih-semyam/1490/1499/                    permanent;
+  rewrite ^/services/catalog/cat/54532/item/66532/951533/     https://$host/uslugi/socialnaya-podderzhka/prochim-lgotnym-kategoriyam/1626/1630/                      permanent;
+  rewrite ^/services/catalog/cat/118532/item/126532/971533/   https://$host/biznes/prirodopolzovanie-i-ekologiya/populyarnoe-v-razdele/1509/                         permanent;
+  rewrite ^/services/catalog/cat/118532/item/126532/968533/   https://$host/biznes/prirodopolzovanie-i-ekologiya/populyarnoe-v-razdele/1510/                         permanent;
+  rewrite ^/services/catalog/cat/118532/item/126532/958533/   https://$host/biznes/prirodopolzovanie-i-ekologiya/populyarnoe-v-razdele/1512/                         permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/988533/     https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/2296/                                                permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/991533/     https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1735/1738/                                           permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/994533/     https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1735/                                                permanent;
+  rewrite ^/services/catalog/cat/118532/item/127532/1070533/  https://$host/biznes/prirodopolzovanie-i-ekologiya/voda/1222/                                          permanent;
+  rewrite ^/services/catalog/cat/118532/item/127532/1074533/  https://$host/biznes/prirodopolzovanie-i-ekologiya/voda/1221/                                          permanent;
+  rewrite ^/services/catalog/cat/54532/item/57532/1128533/    https://$host/uslugi/socialnaya-podderzhka/oplata-zhku/1429/                                           permanent;
+  rewrite ^/services/catalog/cat/18532/item/24532/1153533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1751/                                                permanent;
+  rewrite ^/services/catalog/cat/118532/item/129532/1175533/  https://$host/biznes/transport-i-attrakciony/attrakciony/1211/                                         permanent;
+  rewrite ^/services/catalog/cat/118532/item/128532/1182533/  https://$host/biznes/reklama-torgovlya-i-obschepit/torgovlya/1200/                                     permanent;
+  rewrite ^/services/catalog/cat/18532/item/20532/1188533/    https://$host/uslugi/zhile-zhku-dvor/dokumenty/1722/                                                   permanent;
+  rewrite ^/services/catalog/cat/118532/item/132532/1232533/  https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/zemlyanye-raboty/1282/                       permanent;
+  rewrite ^/services/catalog/cat/3532/item/8532/1284533/      https://$host/uslugi/obrazovanie/dopobrazovanie/1675/                                                  permanent;
+  rewrite ^/services/catalog/cat/49532/item/52532/1284533/    https://$host/uslugi/semya-deti/deti/2204/                                                             permanent;
+  rewrite ^/services/catalog/cat/3532/item/8532/1287533/      https://$host/uslugi/obrazovanie/dopobrazovanie/1674/                                                  permanent;
+  rewrite ^/services/catalog/cat/67532/item/68532/1287533/    https://$host/uslugi/kultura-sport-otdyh/kultura/1803/                                                 permanent;
+  rewrite ^/services/catalog/cat/49532/item/52532/1287533/    https://$host/uslugi/semya-deti/deti/2203/                                                             permanent;
+  rewrite ^/services/catalog/cat/67532/item/70532/1300533/    https://$host/uslugi/kultura-sport-otdyh/sport-i-fizkultura/1814/                                      permanent;
+  rewrite ^/services/catalog/cat/118532/item/128532/1349533/  https://$host/biznes/reklama-torgovlya-i-obschepit/populyarnoe-v-razdele/1469/                         permanent;
+  rewrite ^/services/catalog/cat/54532/item/55532/1433533/    https://$host/uslugi/socialnaya-podderzhka/populyarnoe-v-razdele/1817/                                 permanent;
+  rewrite ^/services/catalog/cat/118532/popular/1349533/      https://$host/biznes/populyarnoe/1305/                                                                 permanent;
+  rewrite ^/services/catalog/cat/118532/item/147532/          https://$host/biznes/organizaciya-biznesa/pomosch-biznesu/2216/                                        permanent;
+  rewrite ^/services/catalog/cat/118532/item/120532/1569533/  https://$host/biznes/organizaciya-biznesa/pomosch-biznesu/1126/                                        permanent;
+  rewrite ^/services/catalog/cat/118532/item/120532/1259533/  https://$host/biznes/organizaciya-biznesa/pomosch-biznesu/1127/                                        permanent;
+  rewrite ^/services/catalog/cat/118532/item/136532/1232533/  https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/populyarnoe-v-razdele/1421/                  permanent;
+  rewrite ^/services/catalog/cat/118532/item/136532/1158533/  https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/populyarnoe-v-razdele/1422/                  permanent;
+  rewrite ^/services/catalog/cat/118532/item/136532/994533/   https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/populyarnoe-v-razdele/1423/                  permanent;
+  rewrite ^/services/catalog/cat/118532/item/136532/1586533/  https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/populyarnoe-v-razdele/1424/                  permanent;
+  rewrite ^/services/catalog/cat/118532/item/123532/991533/   https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/obekty-kulturnogo-naslediya/1292/            permanent;
+  rewrite ^/services/catalog/cat/118532/item/124532/988533/   https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/osobo-ohranyaemye-prirodnye-territorii/1289  permanent;
+  rewrite ^/services/catalog/cat/118532/item/130532/611533/   https://$host/biznes/transport-i-attrakciony/populyarnoe-v-razdele/1495/                               permanent;
+  rewrite ^/services/catalog/cat/118532/item/130532/713533/   https://$host/biznes/transport-i-attrakciony/populyarnoe-v-razdele/1498/                               permanent;
+  rewrite ^/services/catalog/cat/118532/item/133532/1500533/  https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/podklyuchenie-k-setyam/1271/                 permanent;
+  rewrite ^/services/catalog/cat/118532/item/133532/1505533/  https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/podklyuchenie-k-setyam/1272/                 permanent;
+  rewrite ^/services/catalog/cat/118532/item/133532/1511533/  https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/podklyuchenie-k-setyam/1273/                 permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/794533/   https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/1133/                                      permanent;
+  rewrite ^/services/catalog/cat/18532/item/24532/1052533/    https://$host/uslugi/zhile-zhku-dvor/dokumenty/1729/                                                   permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/1500533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1754/1755/                                           permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/1505533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1754/1756/                                           permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/1511533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1754/1757/                                           permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/1556533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1752/                                                permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/1578533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1735/1739/                                           permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/1582533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1735/1740/                                           permanent;
+  rewrite ^/services/catalog/cat/29532/item/30532/853533/     https://$host/uslugi/transport/parkovka/1762/                                                          permanent;
+  rewrite ^/services/catalog/cat/29532/item/32532/1477533/    https://$host/uslugi/transport/shtrafy-i-evakuaciya/1768/                                              permanent;
+  rewrite ^/services/catalog/cat/29532/item/34532/690533/     https://$host/uslugi/transport/prava/1773/                                                             permanent;
+  rewrite ^/services/catalog/cat/82532/item/84532/1259533/    https://$host/uslugi/rabota/pomosch-bezrabotnym/1977/1982/                                             permanent;
+  rewrite ^/services/catalog/cat/71532/item/77532/1433533/    https://$host/uslugi/dokumenty/apostil-arhivnye-dokumenty/1929/                                        permanent;
+  rewrite ^/services/catalog/cat/71532/item/78532/1556533/    https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/1752/                                                permanent;
+  rewrite ^/services/catalog/cat/71532/item/75532/685533/     https://$host/uslugi/dokumenty/dokumenty-dayuschie-pravo-na-lgoty/1910/                                permanent;
+  rewrite ^/services/catalog/cat/71532/item/75532/1433533/    https://$host/uslugi/dokumenty/apostil-arhivnye-dokumenty/1929/                                        permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/704533/     https://$host/uslugi/dokumenty/dokumenty-zags/1882/                                                    permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/700533/     https://$host/uslugi/dokumenty/dokumenty-zags/1880/                                                    permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/724533/     https://$host/uslugi/dokumenty/dokumenty-zags/1881/                                                    permanent;
+  rewrite ^/services/catalog/cat/71532/item/72532/648533/     https://$host/uslugi/dokumenty/lichnye-dokumenty/1873/                                                 permanent;
+  rewrite ^/services/catalog/cat/54532/item/62532/1259533/    https://$host/uslugi/socialnaya-podderzhka/bezrabotnym/1472/1480/                                      permanent;
+  rewrite ^/services/catalog/cat/54532/item/149532/614533/    https://$host/uslugi/socialnaya-podderzhka/mnogodetnym/1638/                                           permanent;
+  rewrite ^/services/catalog/cat/54532/item/61532/614533/     https://$host/uslugi/socialnaya-podderzhka/semyam-s-detmi-beremennym/2017/2020/                        permanent;
+  rewrite ^/services/catalog/cat/54532/item/60532/1128533/    https://$host/uslugi/socialnaya-podderzhka/pensioneram/1525/                                           permanent;
+  rewrite ^/services/catalog/cat/49532/item/52532/704533/     https://$host/uslugi/semya-deti/deti/2107/                                                             permanent;
+  rewrite ^/services/catalog/cat/118532/popular/              https://$host/biznes/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/118532/item/119532/          https://$host/biznes/organizaciya-biznesa/registraciya-biznesa/                                        permanent;
+  rewrite ^/services/catalog/cat/118532/item/120532/          https://$host/biznes/organizaciya-biznesa/pomosch-biznesu/                                             permanent;
+  rewrite ^/services/catalog/cat/118532/item/121532/          https://$host/biznes/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/118532/item/123532/          https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/obekty-kulturnogo-naslediya/                 permanent;
+  rewrite ^/services/catalog/cat/118532/item/124532/          https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/osobo-ohranyaemye-prirodnye-territorii/      permanent;
+  rewrite ^/services/catalog/cat/118532/item/136532/          https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/                                             permanent;
+  rewrite ^/services/catalog/cat/118532/item/125532/          https://$host/biznes/prirodopolzovanie-i-ekologiya/populyarnoe-v-razdele/                              permanent;
+  rewrite ^/services/catalog/cat/118532/item/126532/          https://$host/biznes/prirodopolzovanie-i-ekologiya/populyarnoe-v-razdele/                              permanent;
+  rewrite ^/services/catalog/cat/118532/item/127532/          https://$host/biznes/prirodopolzovanie-i-ekologiya/voda/                                               permanent;
+  rewrite ^/services/catalog/cat/118532/item/128532/          https://$host/biznes/reklama-torgovlya-i-obschepit/                                                    permanent;
+  rewrite ^/services/catalog/cat/118532/item/129532/          https://$host/biznes/transport-i-attrakciony/attrakciony/populyarnoe-v-razdele/                        permanent;
+  rewrite ^/services/catalog/cat/118532/item/130532/          https://$host/biznes/transport-i-attrakciony/                                                          permanent;
+  rewrite ^/services/catalog/cat/118532/item/131532/          https://$host/biznes/reklama-torgovlya-i-obschepit/vyveski-i-reklamnye-konstrukcii/                    permanent;
+  rewrite ^/services/catalog/cat/118532/item/132532/          https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/zemlyanye-raboty/                            permanent;
+  rewrite ^/services/catalog/cat/118532/item/133532/          https://$host/biznes/stroitelstvo-rekonstrukciya-i-remont/podklyuchenie-k-setyam/                      permanent;
+  rewrite ^/services/catalog/cat/118532/item/134532/          https://$host/biznes/zemlya-i-nedvizhimost/nedvizhimost/                                               permanent;
+  rewrite ^/services/catalog/cat/118532/item/135532/          https://$host/biznes/zemlya-i-nedvizhimost/nedvizhimost/                                               permanent;
+  rewrite ^/services/catalog/cat/118532/item/122532/          https://$host/biznes/prirodopolzovanie-i-ekologiya/zhivotnye/                                          permanent;
+  rewrite ^/services/catalog/cat/118532/item/137532/          https://$host/biznes/zemlya-i-nedvizhimost/zemlya/                                                     permanent;
+  rewrite ^/services/catalog/cat/118532/item/138532/          https://$host/biznes/licenzii-i-razresheniya/licenzirovanie/                                           permanent;
+  rewrite ^/services/catalog/cat/118532/item/139532/          https://$host/uslugi/dokumenty/prochee/                                                                permanent;
+  rewrite ^/services/catalog/cat/3532/item/4532/              https://$host/uslugi/obrazovanie/detskiy-sad/                                                          permanent;
+  rewrite ^/services/catalog/cat/3532/item/5532/              https://$host/uslugi/obrazovanie/shkola/                                                               permanent;
+  rewrite ^/services/catalog/cat/3532/item/6532/              https://$host/uslugi/obrazovanie/kolledzh/                                                             permanent;
+  rewrite ^/services/catalog/cat/3532/item/7532/              https://$host/uslugi/obrazovanie/vuz/                                                                  permanent;
+  rewrite ^/services/catalog/cat/3532/item/8532/              https://$host/uslugi/obrazovanie/dopobrazovanie/                                                       permanent;
+  rewrite ^/services/catalog/cat/3532/item/9532/              https://$host/uslugi/obrazovanie/dokumenty-ob-obrazovanii/                                             permanent;
+  rewrite ^/services/catalog/cat/3532/popular/                https://$host/uslugi/obrazovanie/                                                                      permanent;
+  rewrite ^/services/catalog/cat/10532/item/12532/            https://$host/uslugi/zdorove/prikreplenie-k-poliklinike/                                               permanent;
+  rewrite ^/services/catalog/cat/10532/item/13532/            https://$host/uslugi/zdorove/zapis-k-vrachu/                                                           permanent;
+  rewrite ^/services/catalog/cat/10532/item/15532/            https://$host/uslugi/zdorove/                                                                          permanent;
+  rewrite ^/services/catalog/cat/10532/item/16532/            https://$host/uslugi/zdorove/dokumenty-medspravki/                                                     permanent;
+  rewrite ^/services/catalog/cat/10532/item/17532/            https://$host/uslugi/socialnaya-podderzhka/putevki-i-proezd/1450/                                      permanent;
+  rewrite ^/services/catalog/cat/10532/popular/               https://$host/uslugi/zdorove/                                                                          permanent;
+  rewrite ^/services/catalog/cat/18532/item/19532/            https://$host/uslugi/zhile-zhku-dvor/zhku/                                                             permanent;
+  rewrite ^/services/catalog/cat/18532/item/20532/            https://$host/uslugi/zhile-zhku-dvor/dokumenty/1722/                                                   permanent;
+  rewrite ^/services/catalog/cat/18532/item/21532/            https://$host/uslugi/zhile-zhku-dvor/privatizaciya-deprivatizaciya/                                    permanent;
+  rewrite ^/services/catalog/cat/18532/item/22532/            https://$host/uslugi/zhile-zhku-dvor/dokumenty/                                                        permanent;
+  rewrite ^/services/catalog/cat/18532/item/23532/            https://$host/uslugi/zhile-zhku-dvor/dokumenty/                                                        permanent;
+  rewrite ^/services/catalog/cat/18532/item/24532/            https://$host/uslugi/zhile-zhku-dvor/dokumenty/                                                        permanent;
+  rewrite ^/services/catalog/cat/18532/item/25532/            https://$host/uslugi/zhile-zhku-dvor/                                                                  permanent;
+  rewrite ^/services/catalog/cat/18532/item/26532/            https://$host/uslugi/zhile-zhku-dvor/                                                                  permanent;
+  rewrite ^/services/catalog/cat/18532/item/27532/            https://$host/uslugi/zhile-zhku-dvor/renovaciya/                                                       permanent;
+  rewrite ^/services/catalog/cat/18532/item/28532/            https://$host/uslugi/zhile-zhku-dvor/chastnyy-dom/                                                     permanent;
+  rewrite ^/services/catalog/cat/18532/popular/               https://$host/uslugi/zhile-zhku-dvor/                                                                  permanent;
+  rewrite ^/services/catalog/cat/29532/popular/611533/        https://$host/uslugi/transport/propuska/1797/                                                          permanent;
+  rewrite ^/services/catalog/cat/29532/popular/614533/        https://$host/uslugi/transport/parkovka/1760/                                                          permanent;
+  rewrite ^/services/catalog/cat/29532/popular/622533/        https://$host/uslugi/transport/parkovka/1761/                                                          permanent;
+  rewrite ^/services/catalog/cat/29532/popular/853533/        https://$host/uslugi/transport/parkovka/1762/                                                          permanent;
+  rewrite ^/services/catalog/cat/29532/item/30532/            https://$host/uslugi/transport/parkovka/                                                               permanent;
+  rewrite ^/services/catalog/cat/29532/item/31532/            https://$host/uslugi/transport/parkovka/                                                               permanent;
+  rewrite ^/services/catalog/cat/29532/item/32532/            https://$host/uslugi/transport/shtrafy-i-evakuaciya/                                                   permanent;
+  rewrite ^/services/catalog/cat/29532/item/33532/            https://$host/uslugi/transport/samohodnaya-tehnika/                                                    permanent;
+  rewrite ^/services/catalog/cat/29532/item/34532/            https://$host/uslugi/transport/prava/                                                                  permanent;
+  rewrite ^/services/catalog/cat/29532/item/35532/            https://$host/uslugi/transport/pokupka-prodazha-uchet-avto-i-moto/                                     permanent;
+  rewrite ^/services/catalog/cat/29532/item/36532/            https://$host/uslugi/transport/propuska/                                                               permanent;
+  rewrite ^/services/catalog/cat/29532/item/37532/            https://$host/uslugi/transport/                                                                        permanent;
+  rewrite ^/services/catalog/cat/29532/item/38532/            https://$host/uslugi/transport/                                                                        permanent;
+  rewrite ^/services/catalog/cat/29532/item/39532/            https://$host/uslugi/transport/                                                                        permanent;
+  rewrite ^/services/catalog/cat/29532/popular/               https://$host/uslugi/transport/                                                                        permanent;
+  rewrite ^/services/catalog/cat/49532/popular/1287533/       https://$host/uslugi/semya-deti/deti/2203/                                                             permanent;
+  rewrite ^/services/catalog/cat/49532/popular/1284533/       https://$host/uslugi/semya-deti/deti/2204/                                                             permanent;
+  rewrite ^/services/catalog/cat/49532/item/50532/            https://$host/uslugi/semya-deti/brak/                                                                  permanent;
+  rewrite ^/services/catalog/cat/49532/item/51532/            https://$host/uslugi/semya-deti/siroty-i-usynoviteli-opekuny-priemnye-roditeli/2122/                   permanent;
+  rewrite ^/services/catalog/cat/49532/item/52532/            https://$host/uslugi/semya-deti/deti/                                                                  permanent;
+  rewrite ^/services/catalog/cat/49532/item/53532/            https://$host/uslugi/semya-deti/utrata-chlena-semi/                                                    permanent;
+  rewrite ^/services/catalog/cat/49532/popular/               https://$host/uslugi/semya-deti/                                                                       permanent;
+  rewrite ^/services/catalog/cat/54532/popular/618533/        https://$host/uslugi/socialnaya-podderzhka/                                                            permanent;
+  rewrite ^/services/catalog/cat/54532/popular/1433533/       https://$host/uslugi/socialnaya-podderzhka/populyarnoe-v-razdele/1817/                                 permanent;
+  rewrite ^/services/catalog/cat/54532/item/56532/            https://$host/uslugi/socialnaya-podderzhka/uluchshenie-zhilischnyh-usloviy/                            permanent;
+  rewrite ^/services/catalog/cat/54532/item/57532/            https://$host/uslugi/socialnaya-podderzhka/oplata-zhku/                                                permanent;
+  rewrite ^/services/catalog/cat/54532/item/58532/            https://$host/uslugi/socialnaya-podderzhka/putevki-i-proezd/                                           permanent;
+  rewrite ^/services/catalog/cat/54532/item/59532/            https://$host/uslugi/kultura-sport-otdyh/otdyh/                                                        permanent;
+  rewrite ^/services/catalog/cat/54532/item/60532/            https://$host/uslugi/socialnaya-podderzhka/pensioneram/                                                permanent;
+  rewrite ^/services/catalog/cat/54532/item/61532/            https://$host/uslugi/socialnaya-podderzhka/semyam-s-detmi-beremennym/                                  permanent;
+  rewrite ^/services/catalog/cat/54532/item/149532/           https://$host/uslugi/socialnaya-podderzhka/mnogodetnym/                                                permanent;
+  rewrite ^/services/catalog/cat/54532/item/62532/            https://$host/uslugi/socialnaya-podderzhka/bezrabotnym/                                                permanent;
+  rewrite ^/services/catalog/cat/54532/item/63532/            https://$host/uslugi/socialnaya-podderzhka/voennosluzhaschim-i-ih-semyam/                              permanent;
+  rewrite ^/services/catalog/cat/54532/item/64532/            https://$host/uslugi/socialnaya-podderzhka/invalidam/                                                  permanent;
+  rewrite ^/services/catalog/cat/54532/item/65532/            https://$host/uslugi/socialnaya-podderzhka/                                                            permanent;
+  rewrite ^/services/catalog/cat/54532/item/66532/            https://$host/uslugi/socialnaya-podderzhka/prochim-lgotnym-kategoriyam/                                permanent;
+  rewrite ^/services/catalog/cat/54532/item/55532/            https://$host/uslugi/socialnaya-podderzhka/karty-moskvicha-i-dokumenty-dayuschie-pravo-na-lgoty/       permanent;
+  rewrite ^/services/catalog/cat/54532/popular/               https://$host/uslugi/socialnaya-podderzhka/                                                            permanent;
+  rewrite ^/services/catalog/cat/67532/popular/648533/        https://$host/uslugi/kultura-sport-otdyh/populyarnoe-v-razdele/1863/                                   permanent;
+  rewrite ^/services/catalog/cat/67532/popular/1287533/       https://$host/uslugi/kultura-sport-otdyh/kultura/1803/                                                 permanent;
+  rewrite ^/services/catalog/cat/67532/popular/1284533/       https://$host/uslugi/kultura-sport-otdyh/sport-i-fizkultura/1812/                                      permanent;
+  rewrite ^/services/catalog/cat/67532/item/68532/            https://$host/uslugi/kultura-sport-otdyh/kultura/                                                      permanent;
+  rewrite ^/services/catalog/cat/67532/item/69532/            https://$host/uslugi/kultura-sport-otdyh/otdyh/                                                        permanent;
+  rewrite ^/services/catalog/cat/67532/item/70532/            https://$host/uslugi/kultura-sport-otdyh/sport-i-fizkultura/                                           permanent;
+  rewrite ^/services/catalog/cat/67532/popular/               https://$host/uslugi/kultura-sport-otdyh/                                                              permanent;
+  rewrite ^/services/catalog/cat/71532/popular/648533/        https://$host/uslugi/dokumenty/populyarnoe-v-razdele/1899/                                             permanent;
+  rewrite ^/services/catalog/cat/71532/item/72532/            https://$host/uslugi/dokumenty/lichnye-dokumenty/                                                      permanent;
+  rewrite ^/services/catalog/cat/71532/item/73532/            https://$host/uslugi/dokumenty/lichnye-dokumenty/                                                      permanent;
+  rewrite ^/services/catalog/cat/71532/item/74532/            https://$host/uslugi/dokumenty/dokumenty-zags/                                                         permanent;
+  rewrite ^/services/catalog/cat/71532/item/75532/            https://$host/uslugi/dokumenty/dokumenty-dayuschie-pravo-na-lgoty/                                     permanent;
+  rewrite ^/services/catalog/cat/71532/item/76532/            https://$host/uslugi/dokumenty/apostil-arhivnye-dokumenty/                                             permanent;
+  rewrite ^/services/catalog/cat/71532/item/77532/            https://$host/uslugi/dokumenty/apostil-arhivnye-dokumenty/                                             permanent;
+  rewrite ^/services/catalog/cat/71532/item/79532/            https://$host/uslugi/dokumenty/zhilischnye-dokumenty/                                                  permanent;
+  rewrite ^/services/catalog/cat/71532/item/80532/            https://$host/uslugi/dokumenty/zhilischnye-dokumenty/                                                  permanent;
+  rewrite ^/services/catalog/cat/71532/item/81532/            https://$host/uslugi/dokumenty/prochee/                                                                permanent;
+  rewrite ^/services/catalog/cat/71532/popular/               https://$host/uslugi/dokumenty/                                                                        permanent;
+  rewrite ^/services/catalog/cat/82532/popular/1259533/       https://$host/uslugi/rabota/populyarnoe-v-razdele/1909/                                                permanent;
+  rewrite ^/services/catalog/cat/82532/item/83532/            https://$host/uslugi/rabota/ohrana-truda/                                                              permanent;
+  rewrite ^/services/catalog/cat/82532/item/84532/            https://$host/uslugi/rabota/pomosch-bezrabotnym/                                                       permanent;
+  rewrite ^/services/catalog/cat/82532/popular/               https://$host/uslugi/rabota/                                                                           permanent;
+  rewrite ^/services/catalog/cat/85532/popular/853533/        https://$host/uslugi/shtrafy-nalogi-oplata-uslug/populyarnoe-v-razdele/1926/                           permanent;
+  rewrite ^/services/catalog/cat/85532/item/86532/            https://$host/uslugi/shtrafy-nalogi-oplata-uslug/shtrafy/                                              permanent;
+  rewrite ^/services/catalog/cat/85532/item/87532/            https://$host/uslugi/shtrafy-nalogi-oplata-uslug/nalogi/                                               permanent;
+  rewrite ^/services/catalog/cat/85532/popular/               https://$host/uslugi/shtrafy-nalogi-oplata-uslug/                                                      permanent;
+  rewrite ^/services/catalog/cat/89532/popular/618533/        https://$host/uslugi/invalidy/                                                                         permanent;
+  rewrite ^/services/catalog/cat/89532/item/90532/            https://$host/uslugi/zdorove/dokumenty-medspravki/                                                     permanent;
+  rewrite ^/services/catalog/cat/89532/item/91532/618533/     https://$host/uslugi/invalidy/                                                                         permanent;
+  rewrite ^/services/catalog/cat/89532/item/91532/            https://$host/uslugi/invalidy/socialnaya-podderzhka/                                                   permanent;
+  rewrite ^/services/catalog/cat/89532/item/92532/            https://$host/uslugi/invalidy/oformlenie-dokumentov/                                                   permanent;
+  rewrite ^/services/catalog/cat/89532/popular/               https://$host/uslugi/invalidy/                                                                         permanent;
+  rewrite ^/services/catalog/cat/93532/popular/               https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/93532/item/94532/            https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/93532/item/95532/            https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/93532/item/96532/            https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/97532/popular/               https://$host/uslugi/zhivotnye-i-okruzhayuschiy-mir/                                                   permanent;
+  rewrite ^/services/catalog/cat/97532/item/98532/            https://$host/uslugi/zhivotnye-i-okruzhayuschiy-mir/                                                   permanent;
+  rewrite ^/services/catalog/cat/97532/item/99532/            https://$host/uslugi/zhivotnye-i-okruzhayuschiy-mir/                                                   permanent;
+  rewrite ^/services/catalog/cat/97532/item/100532/           https://$host/uslugi/zhivotnye-i-okruzhayuschiy-mir/                                                   permanent;
+  rewrite ^/services/catalog/cat/97532/item/101532/           https://$host/uslugi/zhivotnye-i-okruzhayuschiy-mir/                                                   permanent;
+  rewrite ^/services/catalog/cat/102532/item/103532/          https://$host/uslugi/grazhdanskaya-aktivnost/golosovaniya/                                             permanent;
+  rewrite ^/services/catalog/cat/102532/item/104532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/102532/item/105532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/102532/item/106532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/102532/item/148532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/102532/popular/              https://$host/uslugi/grazhdanskaya-aktivnost/                                                          permanent;
+  rewrite ^/services/catalog/cat/108532/popular/              https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/108532/item/109532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/108532/item/110532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/108532/item/111532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/108532/item/112532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/108532/item/113532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/114532/popular/              https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/114532/item/115532/          https://$host/uslugi/kultura-sport-otdyh/kultura/                                                      permanent;
+  rewrite ^/services/catalog/cat/114532/item/116532/          https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/2532/popular/                https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/2532/item/141532/            https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/cat/2532/item/142532/            https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/catalog/popular/                         https://$host/uslugi/                                                                                  permanent;
+  rewrite ^/services/                                         https://$host/uslugi/                                                                                  permanent;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /upload/photobank/common/upload/mediagallery/ {
+  rewrite /upload/photobank/common/upload/mediagallery/(.*) /$1 break;
+  proxy_pass http://10.89.73.131:8888/;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /vuz/ {
+  rewrite ^/vuz/(.*) /city/projects/vuz/$1 permanent;
+  proxy_redirect off;
+  server_tokens off;
+}
+
+location ^~ /zhilishniy-uchet/ {
+  access_log /app_logs/nginx/zhiluchet.log json;
+  set $application_identifier "zhiluchet";
+  include /etc/nginx/locations/error_pages.conf;
+  rewrite ^/zhilishniy-uchet/(.*) /$1 break;
+  server_tokens off;
+  proxy_redirect off;
+  proxy_set_header Host $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_pass http://zhiluchet;
+}
+
+location ~ /api/sentry/ {
+  client_max_body_size 10M;
+  proxy_set_header Host $http_host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header X-Forwarded-Proto $scheme;
+  proxy_redirect off;
+    location ~ /api/sentry/api/(?P<projectid>\d+/)?store/ {
+    <% @ids.each do |id| %>
+      location ~ /api/sentry/api/<%= id %>/store/ {
+      rewrite /api/sentry/(.*) /$1 break;
+      limit_req zone=sentry_one burst=3 nodelay;
+      limit_req zone=sentry_two burst=10 nodelay;
+      proxy_pass <%= @backends.sentry %>;
+    }
+    <% end %>
+  }
+  server_tokens off;
+}
+
+location ~* ^/authority/structure/[^/]+/view/rss/?$ {
+  rewrite ^/authority/structure/([^/]+)/view/rss/?$  /api/newsfeed/v4/frontend/rss/ru/yandex/oiv/$1  last;
+  proxy_redirect off;
+  server_tokens off;
+}
+

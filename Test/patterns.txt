@@ -1,0 +1,2090 @@
+[{pat_001_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+proxy_redirect off;
+server_tokens off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_002_strict}]
+access_log off;
+include /etc/nginx/locations/error_pages.conf;
+proxy_redirect off;
+server_tokens off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_003_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/access_restrictions.conf;
+include /etc/nginx/locations/api_error_page.conf;
+proxy_redirect    off;
+server_tokens off;
+proxy_set_header  Host $host;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_004_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+proxy_hide_header X-Powered-By;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass 
+
+[{pat_005_strict}]
+server_tokens off;
+return 301
+
+[{pat_006_strict}]
+server_tokens off;
+deny all;
+
+[{pat_007_strict}]
+access_log /app_logs
+set $application_identifier
+proxy_connect_timeout
+proxy_send_timeout
+proxy_read_timeout
+send_timeout
+keepalive_timeout
+server_tokens off;
+proxy_intercept_errors on;
+proxy_redirect off;
+proxy_buffering off;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+proxy_set_header Host $host;
+proxy_pass
+
+[{pat_008_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+recursive_error_pages on;
+proxy_redirect off;
+server_tokens off;
+proxy_set_header Host $map_header_host;
+proxy_pass
+
+[{pat_009_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/(.*) /$1 break;
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET';
+proxy_set_header Host "uat.stats.mos.ru";
+server_tokens off;
+proxy_redirect off;
+proxy_pass 
+
+[{pat_010_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/(.*)
+server_tokens off;
+root
+
+[{pat_011_strict}]
+server_tokens off;
+root /etc/nginx/conf.d/search;
+
+[{pat_012_strict}]
+server_tokens off;
+root /etc/nginx/conf.d/other_xml;
+
+[{pat_013_strict}]
+access_log off;
+server_tokens off;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+
+[{pat_014_strict}]
+server_tokens off;
+proxy_redirect off;
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+rewrite ^/arenda-sport/ /demo/tilda/448540/public/ break;
+proxy_set_header Authorization "Basic dGlsZGE6bW90aWxkYQ==";
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_015_strict}]
+server_tokens off;
+proxy_redirect off;
+access_log /app_logs
+set $application_identifier
+proxy_pass
+
+[{pat_016_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+proxy_hide_header X-Powered-By;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_017_strict}]
+access_log /app_logs
+set $application_identifier
+server_tokens off;
+root
+
+[{pat_018_strict}]
+access_log /app_logs
+set $application_identifier
+add_header content-type "application/json";
+server_tokens off;
+root
+
+[{pat_019_strict}]
+set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+proxy_redirect off;
+server_tokens off;
+proxy_hide_header X-Powered-By;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_020_strict}]
+server_tokens off;
+return 302
+
+[{pat_021_strict}]
+server_tokens off;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+
+[{pat_022_strict}]
+server_tokens off;
+include /etc/nginx/locations/error_pages.conf;
+return 404;
+
+[{pat_023_strict}]
+server_tokens off;
+alias /etc/nginx/conf.d/verification
+auth_basic off;
+allow all;
+log_not_found off;
+access_log off;
+
+[{pat_024_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_025_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin' always;
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods' always;
+add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials always;
+add_header 'Access-Control-Allow-Headers' '$cors_api_allow_headers' always;
+if ($request_method = OPTIONS ) {
+return 204;
+}
+server_tokens off;
+proxy_redirect off;
+proxy_set_header  Host $host;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_026_strict}]
+access_log /app_logs
+set $application_identifier
+auth_basic "closed site";
+auth_basic_user_file /app_data/nginx/htpasswd
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_027_strict}]
+include /etc/nginx/locations/access_restrictions.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+access_log /app_logs
+set $application_identifier
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_028_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_029_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_pass
+
+[{pat_030_strict}]
+access_log off;
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_031_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+add_header        'Access-Control-Allow-Methods' '$cors_altmos_methods';
+add_header        'Access-Control-Allow-Origin' '$cors_altmos_origin';
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_032_strict}]
+include /etc/nginx/locations/api_error_page.conf;
+recursive_error_pages on;
+server_tokens off;
+proxy_redirect off;
+proxy_no_cache 0;
+proxy_cache_bypass 0;
+proxy_cache_lock on;
+proxy_cache_lock_age 10s;
+proxy_cache_valid 7m;
+proxy_cache_use_stale error updating;
+proxy_cache main-page-parks-dynamic;
+proxy_cache_key $uri$request_body;
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header X-Accel-Expires;
+proxy_hide_header Expires;
+proxy_ignore_headers Cache-Control X-Accel-Expires Expires;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header Host $host;
+proxy_pass
+
+[{pat_033_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/server.conf.d/proxy_headers.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_034_strict}]
+access_log /app_logs
+set $application_identifier
+server_tokens off;
+return 301
+
+[{pat_035_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+rewrite /knigi/
+proxy_redirect off;
+server_tokens off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass 
+
+[{pat_036_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+rewrite /knigi/
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_037_strict}]
+access_log off;
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_pass
+
+[{pat_038_strict}]
+access_log off;
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_039_strict}]
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+proxy_set_header  Host $host;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+
+[{pat_040_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Proxied-By www.mos.ru;
+proxy_pass
+
+[{pat_041_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/blockchain-yarmarki
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_042_strict}]
+access_log /app_logs
+set $application_identifier
+auth_basic "closed site";
+auth_basic_user_file /app_data/nginx/htpasswd
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header Host mos.urbaneffects.ru;
+proxy_pass
+
+[{pat_043_strict}]
+access_log /app_logs
+set $application_identifier
+server_tokens off;
+return 302
+
+[{pat_044_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+auth_basic "closed site";
+auth_basic_user_file /app_data/nginx/htpasswd/
+rewrite ^/(.*) 
+server_tokens off;
+root
+
+[{pat_045_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+recursive_error_pages on;
+server_tokens off;
+add_header 'Cache-Control' 'no-cache, private' always;
+proxy_redirect http:// $scheme://;
+proxy_hide_header "Cache-Control";
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_pass
+
+[{pat_046_strict}]
+access_log off;
+set $app_image
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/proxy_cache_assets.conf;
+server_tokens off;
+proxy_hide_header "cache-control";
+proxy_redirect http:// $scheme://;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_047_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header Host mos.goodatlas.ru;
+proxy_pass
+
+[{pat_048_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_049_strict}]
+access_log /app_logs
+set $application_identifier
+if ($request_method !~ "GET") {
+return 403;
+break;
+}
+rewrite ^/elastic-places(.*)
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_050_strict}]
+access_log /app_logs
+set $application_identifier
+if ($request_method !~ "GET") {
+return 403;
+break;
+}
+rewrite ^/elastic-fairs(.*) /fairs/_search$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_051_strict}]
+access_log /app_logs
+set $application_identifier
+if ($request_method !~ "GET") {
+return 403;
+break;
+}
+rewrite ^/elastic-districts(.*) /districts/_search$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_052_strict}]
+access_log /app_logs
+set $application_identifier
+if ($request_method !~ "GET") {
+return 403;
+break;
+}
+rewrite ^/elastic-periods(.*) /periods/_search$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_053_strict}]
+access_log /app_logs
+set $application_identifier
+if ($request_method !~ "GET") {
+return 403;
+break;
+}
+rewrite ^/elastic-regions(.*) /regions/_search$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_054_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/(.*) /upload/common/pm6639/en.html last;
+server_tokens off;
+
+[{pat_055_strict}]
+internal;
+server_tokens off;
+root
+
+[{pat_056_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_pass
+
+[{pat_057_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+rewrite /knigi/(.*) /aisearch/abis_collections/$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_058_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_059_strict}]
+access_log  /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf; 
+include /etc/nginx/locations/access_restrictions.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_060_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+auth_basic "closed site";
+auth_basic_user_file /app_data/nginx/htpasswd
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_061_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite /search-demo/([^/]+)/(.*) /search-demo/$2 break;
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_062_strict}]
+access_log off;
+&set $app
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_063_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_064_strict}]
+auth_basic "closed site";
+auth_basic_user_file /app_data/nginx/htpasswd
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_065_strict}]
+access_log /app_logs
+set $application_identifier
+include  /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+auth_basic "closed folder";
+auth_basic_user_file /app_data/nginx/htpasswd
+root /var/www;
+<% if @use_location_other %>
+try_files $uri @other_nginx;
+<% else %>
+try_files $uri =404;
+<% end %>
+
+[{pat_066_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_067_strict}]
+access_log /app_logs
+set $application_identifier
+set $app_image
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/proxy_cache_assets.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_068_strict}]
+rewrite ^/api/segments/v4/frontend/json/ru/segments/(.*) /services/segments/v3/$1 break;
+access_log /app_logs
+set $application_identifier
+rewrite ^/api/segments/v4/frontend/json/ru/segments/(.*) /services/segments/v1/$1 break;
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET';
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host "uat.stats.mos.ru";
+proxy_pass
+
+[{pat_069_strict}]
+access_log /app_logs
+set $application_identifier
+proxy_connect_timeout
+proxy_send_timeout
+proxy_read_timeout
+send_timeout
+keepalive_timeout
+proxy_intercept_errors on;
+server_tokens off;
+proxy_redirect off;
+proxy_buffering off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+proxy_set_header Host $host;
+proxy_cache_bypass $http_upgrade;
+proxy_pass
+
+[{pat_070_strict}]
+access_log /app_logs
+set $application_identifier
+server_tokens off;
+default_type ‘text/plain’;
+content_by_lua_block {
+ngx.sleep(180)
+ngx.say('Hello, world!')
+}
+
+[{pat_071_strict}]
+rewrite ^/services/segments/v1/(.*) /services/segments/v3/$1 break;
+access_log /app_logs
+set $application_identifier
+rewrite ^/services/segments/v1/(.*) /services/segments/v2/$1 break;
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET';
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host "uat.stats.mos.ru";
+proxy_pass
+
+[{pat_072_strict}]
+access_log /app_logs
+set $application_identifier
+<% if node['chefinit']['ring'] != 'p' %>
+rewrite ^/stproxy/(.*) /test/$1 break;
+<% else %>
+rewrite ^/stproxy/(.*) /$1 break;
+<% end %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin' always;
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods' always;
+add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials always;
+add_header 'Access-Control-Allow-Headers' '$cors_api_allow_headers' always;
+if ($request_method = OPTIONS ) {
+return 204;
+}
+server_tokens off;
+proxy_redirect off;
+proxy_connect_timeout
+proxy_read_timeout
+proxy_pass
+
+[{pat_073_strict}]
+vhost_traffic_status_bypass_limit on;
+vhost_traffic_status_bypass_stats on;
+vhost_traffic_status_display;
+vhost_traffic_status_display_format html;
+allow 172.16.0.0/12;
+allow 10.0.0.0/8;
+deny all;
+server_tokens off;
+
+[{pat_074_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+if ($request_method = POST ) {
+return 405;
+}
+if ($request_method = PUT ) {
+return 405;
+}
+if ($request_method = PATCH ) {
+return 405;
+}
+if ($request_method = DELETE ) {
+return 405;
+}
+error_page 500 501 502 503 504 @redirect-to-catalog;
+recursive_error_pages on;
+server_tokens off;
+add_header 'Cache-Control' 'no-cache, private' always;
+proxy_redirect http:// $scheme://;
+proxy_hide_header "Cache-Control";
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_pass
+
+[{pat_075_strict}]
+include /etc/nginx/locations/api_error_page.conf;
+recursive_error_pages on;
+server_tokens off;
+proxy_redirect off;
+proxy_no_cache 0;
+proxy_cache_bypass 0;
+proxy_cache_lock on;
+proxy_cache_lock_age 10s;
+proxy_cache_valid 7m;
+proxy_cache_use_stale error updating;
+proxy_cache_key $uri$request_body;
+proxy_cache main-page-our-city-dynamic;
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header X-Accel-Expires;
+proxy_hide_header Expires;
+proxy_ignore_headers Cache-Control X-Accel-Expires Expires;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header User-Agent 'mos.ru proxy /api/main-page/v2/ru/our-city';
+proxy_set_header Host gorod.mos.ru;
+proxy_pass
+
+[{pat_076_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/(.*) /upload/common/pm6639/ru.html last;
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+rewrite /city/festivals/(.*) /city/festivals/seasons/$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_hide_header X-Powered-By;
+proxy_set_header  Host $joomla_proxy_host;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_077_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_front_markup_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_front_markup_methods';
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_pass
+
+[{pat_078_strict}]
+access_log /app_logs
+set $application_identifier
+server_tokens off;
+rewrite ^/(.*)/$ https://$host/otvet-upravliaem-gorodom/o-portale-gosuslug-moskvy/ permanent;
+
+[{pat_079_strict}]
+auth_basic "closed site";
+auth_basic_user_file /app_data
+rewrite ^/(.*) /upload/common/mfc_v_5/index.html last;
+server_tokens off;
+
+[{pat_080_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+rewrite /privacypolicy/socmon/ /privacypolicy/socmon.html break;
+server_tokens off;
+root
+
+[{pat_081_strict}]
+root
+allow all;
+log_not_found off;
+access_log off;
+auth_basic off;
+server_tokens off;
+
+[{pat_082_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Request-Scheme "https";
+proxy_set_header X-Forwarded-Host $host;
+proxy_pass
+
+[{pat_083_strict}]
+rewrite /testrobots.txt /robots.txt break;
+root /etc/nginx/conf.d/robots/www;
+allow all;
+log_not_found off;
+access_log off;
+auth_basic off;
+server_tokens off;
+
+[{pat_084_strict}]
+set $app_image "upload";
+include  /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/proxy_cache_assets.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_cache_valid 200 301 1h;
+proxy_cache_valid 302 2m;
+proxy_next_upstream  error timeout invalid_header http_404 http_403 http_500 http_502 http_503 http_504;
+proxy_pass http://other_nginx_frontend;
+
+[{pat_085_strict}]
+set $app_image
+include  /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/proxy_cache_assets.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_cache_valid 200 301 1h;
+proxy_cache_valid 302 2m;
+proxy_next_upstream  error timeout invalid_header http_404 http_403 http_500 http_502 http_503 http_504;
+<% case node['chefinit']['ring'] %>
+<% when 'a','c','t','r' %>
+proxy_next_upstream_tries 4;
+<% end %>
+proxy_pass
+
+[{pat_086_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $sportsovetnik_proxy_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Proxied-By www.mos.ru;
+proxy_send_timeout
+proxy_read_timeout
+proxy_connect_timeout
+proxy_pass
+
+[{pat_087_strict}]
+access_log /app_logs
+set $application_identifier
+<% case node['chefinit']['ring'] %>
+<% when 'p' %>
+proxy_connect_timeout
+proxy_read_timeout
+<% else %>
+proxy_connect_timeout
+proxy_read_timeout
+<% end %>
+proxy_intercept_errors on;
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_088_strict}]
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+access_log /app_logs
+set $application_identifier
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials;
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_089_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+if ($cookie_mos_id = '') {
+return 403;
+}
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_090_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+auth_basic "closed site";
+auth_basic_user_file /etc/nginx/conf.d/htpasswd
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_091_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+rewrite /api/agvmeste/(.*) /$1 break;
+proxy_redirect off;
+proxy_set_header Host "ag-vmeste.ru";
+proxy_pass
+
+[{pat_092_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+rewrite /api/altmosmvc/v1/frontend/json/ru/districts/cards_assembler(.*) /altmosmvc/api/v1/districts/cards_assembler/$1 break;
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_093_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+add_header 'Access-Control-Allow-Credentials' '$cors_api_allow_credentials';
+<% end %>
+proxy_hide_header "Cache-Control";
+add_header 'Cache-Control' 'no-store' always;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_094_strict}]
+access_log /app_logs
+set $application_identifier
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials;
+<% end %>
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_pass
+
+[{pat_095_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/api/ext/uik/(.*) /houses/$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host egipdata.mos.ru;
+proxy_pass
+
+[{pat_096_strict}]
+access_log /app_logs
+set $application_identifier
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+<% end %>
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_send_timeout
+client_max_body_size
+proxy_pass
+
+[{pat_097_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+proxy_connect_timeout
+proxy_send_timeout
+proxy_read_timeout
+send_timeout
+keepalive_timeout
+server_tokens off;
+proxy_redirect off;
+<% case node['chefinit']['ring'] %>
+<% when 'a' %>
+proxy_set_header Host "a-tech.mos.ru";
+<% when 'c' %>
+proxy_set_header Host "c-tech.mos.ru";
+<% when 't' %>
+proxy_set_header Host "t-tech.mos.ru";
+<% when 'r' %>
+proxy_set_header Host "newmos.mos.ru";
+<% when 'p' %>
+proxy_set_header Host "www.mos.ru";
+<% end %>
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+client_max_body_size
+proxy_pass
+
+[{pat_098_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_099_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+<% if @is_public %> auth_basic off; allow all;<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_100_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_buffering off;
+proxy_read_timeout
+proxy_send_timeout
+proxy_pass
+
+[{pat_101_strict}]
+include /etc/nginx/locations/api_error_page.conf;
+recursive_error_pages on;
+server_tokens off;
+proxy_redirect off;
+proxy_no_cache 0;
+proxy_cache_bypass 0;
+proxy_cache_lock on;
+proxy_cache_lock_age 10s;
+proxy_cache_valid 1m;
+proxy_cache_use_stale error updating;
+proxy_cache main-page-ag-dynamic;
+proxy_cache_key $uri$request_body;
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header X-Accel-Expires;
+proxy_hide_header Expires;
+proxy_ignore_headers Cache-Control X-Accel-Expires Expires;
+proxy_set_header Host ag.mos.ru;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_pass
+
+[{pat_102_strict}]
+include /etc/nginx/locations/api_error_page.conf;
+recursive_error_pages on;
+server_tokens off;
+proxy_redirect off;
+proxy_no_cache 0;
+proxy_cache_bypass 0;
+proxy_cache_lock on;
+proxy_cache_lock_age 10s;
+proxy_cache_valid 7m;
+proxy_cache_use_stale error updating;
+proxy_cache main-page-crowd-dynamic;
+proxy_cache_key $uri$request_body;
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header X-Accel-Expires;
+proxy_hide_header Expires;
+proxy_ignore_headers Cache-Control X-Accel-Expires Expires;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header Host crowd.mos.ru;
+proxy_pass
+
+[{pat_103_strict}]
+include /etc/nginx/locations/api_error_page.conf;
+recursive_error_pages on;
+server_tokens off;
+proxy_redirect off;
+proxy_no_cache 0;
+proxy_cache_bypass 0;
+proxy_cache_lock on;
+proxy_cache_lock_age 10s;
+proxy_cache_valid 1m;
+proxy_cache_use_stale error updating;
+proxy_cache main-page-moscow-diameters-dynamic;
+proxy_cache_key $uri$request_body;
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header X-Accel-Expires;
+proxy_hide_header Expires;
+proxy_ignore_headers Cache-Control X-Accel-Expires Expires;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header Host $host;
+proxy_pass
+
+[{pat_104_strict}]
+include /etc/nginx/locations/api_error_page.conf;
+recursive_error_pages on;
+server_tokens off;
+proxy_redirect off;
+proxy_no_cache 0;
+proxy_cache_bypass 0;
+proxy_cache_lock on;
+proxy_cache_lock_age 10s;
+proxy_cache_valid 1m;
+proxy_cache_use_stale error updating;
+proxy_cache main-page-renovation-dynamic;
+proxy_cache_key $uri$request_body;
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header X-Accel-Expires;
+proxy_hide_header Expires;
+proxy_ignore_headers Cache-Control X-Accel-Expires Expires;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header Host $host;
+proxy_pass
+
+[{pat_105_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+add_header 'Access-Control-Allow-Credentials' '$cors_api_allow_credentials';
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_106_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_107_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/access_restrictions.conf;
+include /etc/nginx/locations/api_error_page.conf;
+include /etc/nginx/server.conf.d/proxy_headers.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_108_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+return 302
+
+[{pat_109_strict}]
+access_log off;
+include /etc/nginx/locations/error_pages.conf;
+gzip on;
+gzip_proxied any;
+gzip_types text/javascript application/javascript;
+gzip_vary on;
+gzip_disable "msie6";
+expires
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_pass
+
+[{pat_110_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite /backend/itkms/backend/(.*) /backend/$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Proxied-By www.mos.ru;
+proxy_pass
+
+[{pat_111_strict}]
+access_log /app_logs
+set $application_identifier
+if ($request_method !~ "GET") {
+return 403;
+break;
+}
+rewrite ^/bchelastic(.*) /blockchain/_search$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_112_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/bchfrontstatic/(.*) /$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_113_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/(.*) /upload/common/pm6639/ru.html last;
+server_tokens off;
+
+[{pat_114_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/(.*) /upload/common/pm6639/ru.html last;
+include /etc/nginx/locations/error_pages.conf;
+rewrite /city/festivals/(.*) /city/festivals/seasons/$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_hide_header X-Powered-By;
+proxy_set_header  Host $joomla_proxy_host;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_115_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+include /etc/nginx/locations/error_pages.conf;
+add_header 'Access-Control-Allow-Methods' '$cors_altmos_methods';
+add_header 'Access-Control-Allow-Origin' '$cors_altmos_origin';
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_116_strict}]
+access_log /app_logs/
+set $application_identifier
+rewrite /city/projects/mosapps_dev/(.*) /$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host "mosapps.dev.notamedia.ru";
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_117_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+include /etc/nginx/locations/error_pages.conf;
+rewrite /city/projects/newyear2019/(.*) /city/projects/new-year-2019/$1 break;
+add_header 'Access-Control-Allow-Methods' '$cors_altmos_methods';
+add_header 'Access-Control-Allow-Origin' '$cors_altmos_origin';
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_118_strict}]
+access_log /app_logs
+set $application_identifier
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Accept-Encoding $client_accepts_gzip;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header Host mos.urbaneffects.ru;
+proxy_pass
+
+[{pat_119_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite /city/seasons/assets/(.*) /city/festivals/seasons/assets/$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_hide_header X-Powered-By;
+proxy_set_header  Host $joomla_proxy_host;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_120_strict}]
+access_log  /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_send_timeout
+proxy_read_timeout
+proxy_connect_timeout
+proxy_pass
+
+[{pat_121_strict}]
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+include  /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+return 404;
+
+[{pat_122_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $coachregister_proxy_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Proxied-By www.mos.ru;
+proxy_send_timeout
+proxy_read_timeout
+proxy_connect_timeout
+proxy_pass
+
+[{pat_123_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/api_error_page.conf;
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_124_strict}]
+access_log /app_logs
+set $application_identifier
+include  /etc/nginx/locations/error_pages.conf;
+rewrite /ditconf/(.*) /city/projects/ditconf18/$1 break;
+add_header 'Access-Control-Allow-Methods' '$cors_altmos_methods';
+add_header 'Access-Control-Allow-Origin' '$cors_altmos_origin';
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_125_strict}]
+access_log /app_logs
+set $application_identifier
+if ( $args ~ "department=21433090" ) {
+return 301 https://$host/feedback/reception/?department=11491090;
+}
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_126_strict}]
+access_log /app_logs
+set $application_identifier
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% end %>
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/proxy_cache_assets.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_127_strict}]
+&set $app
+access_log off;
+include /etc/nginx
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_front_markup_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_front_markup_methods';
+add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials;
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_pass
+
+[{pat_128_strict}]
+access_log /app_logs
+set $application_identifier
+<% if node['chefinit']['environment'] == 'reserve' %>
+auth_basic $access_realm;
+<% else %>
+auth_basic "closed site";
+<% end %>
+auth_basic_user_file /app_data/nginx/htpasswd
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_129_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+if ( $any_bot = 0 ) {
+rewrite ^/mobile/$ /upload/common/mobile/index.html last;
+rewrite ^/mobile/(.*)$ /upload/common/mobile/$1 last;
+access_log /app_logs/nginx/upload_mobile.log json;
+}
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP  $remote_addr;
+proxy_set_header X-Forwarded-For  $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto  $scheme;
+proxy_pass
+
+[{pat_130_strict}]
+rewrite (.*)  https://$host/karta-moskvicha/  redirect;
+server_tokens off;
+
+[{pat_131_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+<% if @is_public %> auth_basic off; allow all;<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_132_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+rewrite /mr_docs(.*) /city/projects/mr_docs$1 break;
+add_header 'Access-Control-Allow-Methods' '$cors_altmos_methods';
+add_header 'Access-Control-Allow-Origin' '$cors_altmos_origin';
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_133_strict}]
+&set $app
+access_log off;
+include /etc/nginx/locations/error_pages.conf;
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_front_markup_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_front_markup_methods';
+add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials;
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_pass
+
+[{pat_134_strict}]
+access_log  /app_logs
+set $application_identifier
+error_page 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 500 501 502 503 504 505 =200 /image_error/mos.$open_graph_lang.png;
+server_tokens off;
+proxy_redirect off;
+proxy_intercept_errors on;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_135_strict}]
+auth_basic "closed site";
+auth_basic_user_file /app_data/nginx/htpasswd/main;
+rewrite ^/poluchenie-zagranpasporta/(.*) /upload/common/mfc_v_5/$1 last;
+server_tokens off;
+
+[{pat_136_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_137_strict}]
+access_log /app_logs
+set $application_identifier
+proxy_connect_timeout
+proxy_read_timeout
+proxy_intercept_errors on;
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_138_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_139_strict}]
+access_log off;
+include /etc/nginx/locations/error_pages.conf;
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods';
+add_header 'Access-Control-Allow-Credentials' '$cors_api_allow_credentials';
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_140_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+proxy_connect_timeout
+proxy_send_timeout
+proxy_read_timeout
+send_timeout
+keepalive_timeout
+proxy_intercept_errors on;
+server_tokens off;
+proxy_redirect off;
+proxy_buffering off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $connection_upgrade;
+proxy_set_header Host $map_header_host;
+proxy_cache_bypass $http_upgrade;
+proxy_pass
+
+[{pat_141_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/access_restrictions.conf;
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/server.conf.d/proxy_headers.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_142_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/access_restrictions.conf;
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $httpbin_host_header;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_intercept_errors off;
+proxy_pass
+
+[{pat_143_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $sportsovetnik_services_proxy_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Proxied-By www.mos.ru;
+proxy_send_timeout
+proxy_read_timeout
+proxy_connect_timeout
+proxy_pass
+
+[{pat_144_strict}]
+access_log off;
+set $app_image
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/proxy_cache_assets.conf;
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+
+[{pat_145_strict}]
+error_page 404 /include_error_pages/404.html;
+access_log off;
+add_header Last-Modified $date_gmt;
+add_header Cache-Control 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+if_modified_since off;
+expires off;
+etag off;
+root /;
+try_files /tmp/status_for_citrix =503;
+server_tokens off;
+
+[{pat_146_strict}]
+access_log /app_logs
+set $application_identifier
+if ($request_method !~ "GET") {
+return 403;
+break;
+}
+rewrite ^/transactions(.*) /transactions/_search$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_pass
+
+[{pat_147_strict}]
+auth_basic "closed site";
+auth_basic_user_file /app_data/nginx/htpasswd
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+proxy_set_header  Host $host;
+proxy_set_header  X-Real-IP $remote_addr;
+proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+
+[{pat_148_strict}]
+access_log off;
+include  /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+root
+auth_basic off; allow all;
+add_header 'Access-Control-Allow-Origin' '*';
+<% if @use_location_other %>
+try_files $uri @other_nginx_or_prod;
+<% else %>
+try_files $uri =404;
+<% end %>
+
+[{pat_149_strict}]
+access_log /app_logs
+set $application_identifier
+include  /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+root /var/www;
+<% if @use_location_other %>
+try_files $uri @other_nginx_or_prod;
+<% else %>
+try_files $uri =404;
+<% end %>
+
+[{pat_150_strict}]
+access_log off;
+include  /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+root
+auth_basic off; allow all;
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS, HEAD';
+<% if @use_location_other %>
+try_files $uri @other_nginx_or_prod;
+<% else %>
+try_files $uri =404;
+<% end %>
+
+[{pat_151_strict}]
+access_log off;
+include  /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+root
+auth_basic off; allow all;
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS';
+<% if @use_location_other %>
+try_files $uri @other_nginx_or_prod;
+<% else %>
+try_files $uri =404;
+<% end %>
+
+[{pat_152_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+rewrite ^\/upload\/trp\/([a-zA-Z0-9\_\-]+)\/(.+)$ /$2  break;
+resolver 172.16.253.134;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header  Host $1.mos.ru;
+proxy_pass
+
+[{pat_153_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+rewrite /uslugi/mirovoy-sud/(.*) /$1 break;
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Proxied-By www.mos.ru;
+proxy_pass
+
+[{pat_154_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+rewrite /vote-map/(.*) /city/projects/vote-map-closed/$1 break;
+add_header 'Access-Control-Allow-Methods' '$cors_altmos_methods';
+add_header 'Access-Control-Allow-Origin' '$cors_altmos_origin';
+server_tokens off;
+proxy_redirect https://$alt_host/ https://$host/;
+proxy_set_header Host $alt_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_155_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/cors_wildcard.conf;
+add_header "Access-Control-Allow-Headers" "Authorization";
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+proxy_set_header X-Real-IP $remote_addr;
+
+[{pat_156_strict}]
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/cors_wildcard.conf;
+add_header "Access-Control-Allow-Headers" "Authorization";
+allow all;
+server_tokens off;
+proxy_redirect off;
+proxy_pass
+proxy_set_header X-Real-IP $remote_addr;
+
+[{pat_157_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+<% if @is_public %> auth_basic off; allow all;<% end %>
+<% if @cors_enabled %>
+add_header 'Access-Control-Allow-Origin' '*';
+add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+<% else %>
+add_header 'Access-Control-Allow-Origin' '$cors_front_markup_origin';
+add_header 'Access-Control-Allow-Methods' '$cors_front_markup_methods';
+add_header 'Access-Control-Allow-Credentials' $cors_api_allow_credentials;
+<% end %>
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_pass
+
+[{pat_158_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+set_by_lua $lowercase_uri "return ngx.arg[1]:lower()" $uri;
+if ($uri != $lowercase_uri) {
+return 301 https://$host$lowercase_uri$is_args$args;
+}
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_159_strict}]
+&set $app
+access_log /app_logs
+set $application_identifier
+include /etc/nginx/locations/error_pages.conf;
+include /etc/nginx/locations/rewrite_slash_in_the_end.conf;
+if ($request_method = POST) {
+return 405;
+}
+if ($request_method = PUT) {
+return 405;
+}
+if ($request_method = DELETE) {
+return 405;
+}
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $map_header_host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
+[{pat_160_strict}]
+access_log /app_logs
+set $application_identifier "markup-mos";
+server_tokens off;
+proxy_redirect off;
+proxy_intercept_errors on;
+recursive_error_pages on;
+error_page 404 = @send_projects_to_projects_api;
+proxy_pass
+
+[{pat_161_strict}]
+access_log  off;
+include  /etc/nginx/locations/error_pages.conf;
+server_tokens off;
+root
+<% if @use_location_other %>
+try_files $uri @other_nginx_or_prod;
+<% else %>
+try_files $uri =404;
+<% end %>
+
+[{pat_162_strict}]
+mp4;
+mp4_buffer_size     1m;
+mp4_max_buffer_size 5m;
+server_tokens off;
+root
+include  /etc/nginx/locations/error_pages.conf;
+<% if @use_location_other %>
+try_files $uri @other_nginx_or_prod;
+<% else %>
+try_files $uri =404;
+<% end %>
+
+[{pat_163_strict}]
+access_log /app_logs
+set $application_identifier
+rewrite ^/amp/authority/messages/(.*) https://$host/authority/messages/$1 redirect;
+server_tokens off;
+
+[{pat_164_strict}]
+include /etc/nginx/locations/api_error_page.conf;
+if ($is_human_readable_url) {
+error_page 500 502 503 504 /include_error_pages_auth/500.ru.html;
+error_page 480 409 =500 /include_error_pages_auth/500.ru.html;
+}
+add_header 'Access-Control-Allow-Origin' '$cors_api_origin' always;
+add_header 'Access-Control-Allow-Methods' '$cors_api_methods' always;
+add_header 'Access-Control-Allow-Credentials' '$cors_api_allow_credentials' always;
+add_header 'Access-Control-Allow-Headers' '$cors_api_allow_headers' always;
+if ($request_method = OPTIONS ) {
+return 204;
+}
+proxy_hide_header "Cache-Control";
+add_header 'Cache-Control' 'no-store' always;
+access_log /app_logs/nginx/acs.log json;
+set $application_identifier "acs";
+server_tokens off;
+proxy_redirect off;
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_pass
+
